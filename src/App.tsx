@@ -1,5 +1,11 @@
+import Nav from "./layout/Nav";
+
 function App() {
-  return <div>My Wedding 어플리케이션</div>;
+  return (
+    <div>
+      <Nav />
+    </div>
+  );
 }
 
 export default App;

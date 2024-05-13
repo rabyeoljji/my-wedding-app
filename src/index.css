@@ -1,4 +1,6 @@
-@import url("/src/reset/reset.css");
+@import url("./reset/reset.css");
+
+@import url("./assets/css/tailwind.css");
 
 .noto-serif-kr-regular {
   font-family: "Noto Serif KR", serif;
