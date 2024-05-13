@@ -1,0 +1,22 @@
+@import url("/src/reset/reset.css");
+
+.noto-serif-kr-regular {
+  font-family: "Noto Serif KR", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.noto-serif-kr-bold {
+  font-family: "Noto Serif KR", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+.noto-serif-kr-semibold {
+  font-family: "Noto Serif KR", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+#root {
+  font-family: "Noto Serif KR", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
