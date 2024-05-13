@@ -2,6 +2,10 @@
 
 @import url("./assets/css/tailwind.css");
 
+*:focus {
+  outline-color: rgb(55 48 163);
+}
+
 .noto-serif-kr-regular {
   font-family: "Noto Serif KR", serif;
   font-weight: 400;

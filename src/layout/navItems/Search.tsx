@@ -1,11 +1,14 @@
-function Search() {
+function Search({ isMobile }: { isMobile: boolean }) {
   return (
     <>
-      <form className="flex justify-center items-center w-1/2 ">
-        <input type="text" className="hidden sm:inline-block w-4/5 min-w-36 h-12 rounded-xl"></input>
+      <form className={`${!isMobile ? "hidden w-1/2 sm:flex" : "w-full flex"} justify-center items-center`}>
+        <input
+          type="text"
+          className={`${!isMobile ? "hidden w-4/5" : "w-3/5 ml-4"} sm:inline-block min-w-36 h-12 rounded-xl`}
+        ></input>
         <button
           type="button"
-          className="hidden sm:flex shrink-0 justify-center items-center w-12 h-12 rounded-full bg-white ml-2 hover:bg-gray-200"
+          className={`${!isMobile ? "hidden sm:flex" : "flex"} shrink-0 justify-center items-center w-12 h-12 rounded-full bg-white ml-2 hover:bg-gray-200 transition-all`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +24,7 @@ function Search() {
         </button>
         <button
           type="button"
-          className="hidden sm:flex shrink-0 justify-center items-center w-12 h-12 rounded-full bg-white ml-2 hover:bg-gray-200"
+          className={`${!isMobile ? "hidden sm:flex" : "flex"} shrink-0 justify-center items-center w-12 h-12 rounded-full bg-white ml-2 hover:bg-gray-200 transition-all`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
