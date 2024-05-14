@@ -3,11 +3,11 @@ const SignUp = (): JSX.Element => {
     <form action="" className="flex flex-col justify-center items-center">
       <h1 className="text-3xl font-bold mb-12">회원가입</h1>
       <div className="w-80 sm:w-96 flex justify-between items-center mb-2">
-        <label>아이디</label>
+        <label>이메일</label>
         <input
-          type="text"
+          type="email"
           className="w-44 sm:w-56 border-solid border-2 border-gray-200 rounded sm:ml-12 placeholder:text-slate-400 placeholder:text-xs indent-2.5 py-1"
-          placeholder="아이디를 입력해주세요"
+          placeholder="mywedding@example.com"
         ></input>
       </div>
       <div className="w-80 sm:w-96 flex justify-between items-center mb-2">
@@ -15,7 +15,7 @@ const SignUp = (): JSX.Element => {
         <input
           type="password"
           className="w-44 sm:w-56 border-solid border-2 border-gray-200 rounded sm:ml-12 placeholder:text-xs indent-2.5 py-1"
-          placeholder="비밀번호를 입력해주세요"
+          placeholder="(영문,특수문자 포함 6~12자리)"
         ></input>
       </div>
       <div className="w-80 sm:w-96 flex justify-between items-center mb-2">
@@ -23,7 +23,7 @@ const SignUp = (): JSX.Element => {
         <input
           type="password"
           className="w-44 sm:w-56 border-solid border-2 border-gray-200 rounded sm:ml-12 placeholder:text-xs indent-2.5 py-1"
-          placeholder="작성한 비밀번호를 한 번 더 입력해주세요"
+          placeholder="비밀번호를 한 번 더 입력해주세요"
         ></input>
       </div>
       <div className="w-80 sm:w-96 flex justify-between items-center mt-10">

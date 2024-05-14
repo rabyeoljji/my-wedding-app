@@ -1,5 +1,4 @@
 import KAKAO_IMG_WIDE from "../assets/sns/kakao_login_medium_wide.png";
-import KAKAO_IMG_NARROW from "../assets/sns/kakao_login_medium_narrow.png";
 
 const Login = (): JSX.Element => {
   return (
@@ -8,11 +7,11 @@ const Login = (): JSX.Element => {
       <form action="" className="flex justify-center items-center">
         <div className="flex flex-col justify-center items-center">
           <div className="w-64 sm:w-96 flex justify-between items-center my-2">
-            <label>아이디</label>
+            <label>이메일</label>
             <input
-              type="text"
+              type="email"
               className="w-44 sm:w-56 border-solid border-2 border-gray-200 rounded sm:ml-12 placeholder:text-slate-400 placeholder:text-xs indent-2.5 py-1"
-              placeholder="아이디를 입력해주세요"
+              placeholder="mywedding@example.com"
             ></input>
           </div>
           <div className="w-64 sm:w-96 flex justify-between items-center mb-2">
