@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, MutableRefObject, useRef, useState } from "react";
-import { useSetUser } from "../auth/SignUpAuth";
+import { setUser } from "../auth/SignUpAuth";
 import { useNavigate } from "react-router";
 
 const SignUpUser = (): JSX.Element => {
@@ -9,17 +9,15 @@ const SignUpUser = (): JSX.Element => {
     passwordCheck: "",
     nickname: "",
   });
-
   const passwordRef = useRef() as MutableRefObject<HTMLInputElement>,
     passwordCheckRef = useRef() as MutableRefObject<HTMLInputElement>;
 
   const navigate = useNavigate();
-  const setUser = useSetUser();
 
   const passwordInput = passwordRef.current,
     passwordCheckInput = passwordCheckRef.current;
 
-  const onChange = (e: ChangeEvent) => {
+  const changeState = (e: ChangeEvent) => {
     const inputTarget = e.target as HTMLInputElement;
     if (inputTarget.name === "email") {
       setInputState({
@@ -47,7 +45,7 @@ const SignUpUser = (): JSX.Element => {
     }
   };
 
-  const onSubmit = async (e: FormEvent) => {
+  const submitSignUp = async (e: FormEvent) => {
     e.preventDefault();
 
     if (!inputState.email || !inputState.password || !inputState.passwordCheck || !inputState.nickname) {
@@ -73,7 +71,7 @@ const SignUpUser = (): JSX.Element => {
   };
 
   return (
-    <form className="flex flex-col justify-center items-center" onSubmit={(e) => onSubmit(e)}>
+    <form className="flex flex-col justify-center items-center" onSubmit={(e) => submitSignUp(e)}>
       <h1 className="text-3xl font-bold mb-12">회원가입</h1>
       <div className="w-80 sm:w-96 flex justify-between items-center mb-2">
         <label>이메일</label>
@@ -82,7 +80,7 @@ const SignUpUser = (): JSX.Element => {
           name="email"
           className="w-44 sm:w-56 border-solid border-2 border-gray-200 rounded sm:ml-12 placeholder:text-slate-400 placeholder:text-xs indent-2.5 py-1"
           placeholder="mywedding@example.com"
-          onChange={(e) => onChange(e)}
+          onChange={(e) => changeState(e)}
         ></input>
       </div>
       <div className="w-80 sm:w-96 flex justify-between items-center mb-2">
@@ -93,7 +91,7 @@ const SignUpUser = (): JSX.Element => {
           className="w-44 sm:w-56 border-solid border-2 border-gray-200 rounded sm:ml-12 placeholder:text-xs indent-2.5 py-1"
           placeholder="(영문,특수문자 포함 6~12자리)"
           ref={passwordRef}
-          onChange={(e) => onChange(e)}
+          onChange={(e) => changeState(e)}
         ></input>
       </div>
       <div className="w-80 sm:w-96 flex justify-between items-center mb-2">
@@ -104,7 +102,7 @@ const SignUpUser = (): JSX.Element => {
           className="w-44 sm:w-56 border-solid border-2 border-gray-200 rounded sm:ml-12 placeholder:text-xs indent-2.5 py-1"
           placeholder="비밀번호를 한 번 더 입력해주세요"
           ref={passwordCheckRef}
-          onChange={(e) => onChange(e)}
+          onChange={(e) => changeState(e)}
         ></input>
       </div>
       <div className="w-80 sm:w-96 flex justify-between items-center mt-10">
@@ -114,7 +112,7 @@ const SignUpUser = (): JSX.Element => {
           name="nickname"
           className="w-44 sm:w-56 border-solid border-2 border-gray-200 rounded sm:ml-12 placeholder:text-xs indent-2.5 py-1"
           placeholder="닉네임을 입력해주세요"
-          onChange={(e) => onChange(e)}
+          onChange={(e) => changeState(e)}
         ></input>
       </div>
       <button
