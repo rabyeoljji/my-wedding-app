@@ -28,7 +28,7 @@ export const setUser = ({ email, password, nickname }: SignUpInputType) => {
         reviews: [],
       });
       // 저장이 성공하면 성공 alert를 사용자에게 보여준다.
-      alert("회원가입에 성공하셨습니다. 로그인 해주세요.");
+      alert("My Wedding 회원으로 등록되었습니다!");
       return true;
     } catch (err: any) {
       switch (err.code) {
@@ -42,7 +42,7 @@ export const setUser = ({ email, password, nickname }: SignUpInputType) => {
           alert("등록된 이메일 입니다.");
           break;
         default:
-          alert("회원가입 실패");
+          alert(err.code);
           break;
       }
       return false;

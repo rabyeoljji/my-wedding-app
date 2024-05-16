@@ -8,6 +8,7 @@ import Profile from "../views/Profile";
 import MyReviews from "../views/MyReviews";
 import WishList from "../views/WishList";
 import PasswordResetPage from "../views/PasswordResetPage";
+import ProcessKakaoToken from "../auth/socialLogin/ProcessKakaoToken";
 
 const Router = (): JSX.Element => {
   return (
@@ -17,6 +18,7 @@ const Router = (): JSX.Element => {
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
       <Route path="/password-reset" element={<PasswordResetPage />} />
+      <Route path="/kakaoAuth" element={<ProcessKakaoToken />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/my-reviews" element={<MyReviews />} />
       <Route path="/wishlist" element={<WishList />} />

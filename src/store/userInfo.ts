@@ -38,8 +38,9 @@ export const fetchUniqueData = async (collectionName: string, docId: string) => 
   if (docData.exists()) {
     return docData.data();
   } else {
+    alert("등록되지 않은 회원입니다");
     console.log("No such document!");
-    return;
+    return false;
   }
 };
 

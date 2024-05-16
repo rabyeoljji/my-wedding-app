@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router";
-import KAKAO_IMG_WIDE from "../assets/sns/kakao_login_medium_wide.png";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useLogin } from "../auth/LoginOutAuth";
 import { useSetAtom } from "jotai";
 import { fetchUniqueData, userAtom } from "../store/userInfo";
+import GoogleLoginBtn from "../auth/socialLogin/GoogleLoginBtn";
+import KakaoLoginBtn from "../auth/socialLogin/KakaoLoginBtn";
 
 const LoginUser = (): JSX.Element => {
   const [inputState, setInputState] = useState({
@@ -37,6 +38,15 @@ const LoginUser = (): JSX.Element => {
 
   const submitLogin = async (e: FormEvent) => {
     e.preventDefault();
+    if (!inputState.email || !inputState.password) {
+      alert("이메일과 비밀번호를 모두 입력해주세요.");
+      return;
+    }
+    if (inputState.password.length < 6 || inputState.password.length > 12) {
+      alert("비밀번호는 6~12자리로만 설정이 가능합니다.");
+      return;
+    }
+
     const uid = login({ ...inputState });
 
     if ((await uid).valueOf()) {
@@ -87,7 +97,8 @@ const LoginUser = (): JSX.Element => {
           LOGIN
         </button>
       </form>
-      <img src={KAKAO_IMG_WIDE} className="cursor-pointer mt-12"></img>
+      <GoogleLoginBtn />
+      <KakaoLoginBtn />
       <div className="flex justify-between items-center w-80">
         <button
           type="button"
