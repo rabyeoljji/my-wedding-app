@@ -4,6 +4,7 @@ import { businessAtom, filteredListAtom } from "../../store/company";
 import BudgetFilter from "./BudgetFilter";
 import GeoFilter from "./GeoFilter";
 import { filterAtom } from "../../store/filter";
+import { filterStateType } from "../../@types/Filter";
 
 function Search({ isMobile }: { isMobile: boolean }) {
   const businessList = useAtomValue(businessAtom);
@@ -49,6 +50,17 @@ function Search({ isMobile }: { isMobile: boolean }) {
     }
   };
 
+  const isFilterActive = (category: string, filterState: filterStateType) => {
+    if (category === "geo") {
+      return filterState.geo[0] !== "전체" || filterState.geo[1] !== "전체";
+    } else if (category === "budget") {
+      return (
+        (filterState.budget[0] !== null && filterState.budget[0] !== 0) ||
+        (filterState.budget[1] !== null && filterState.budget[1] !== 0)
+      );
+    }
+  };
+
   return (
     <>
       <form className={`${!isMobile ? "hidden w-1/2 sm:flex" : "w-full flex"} justify-center items-center`}>
@@ -59,7 +71,7 @@ function Search({ isMobile }: { isMobile: boolean }) {
         ></input>
         <button
           type="button"
-          className={`geoFilter ${!isMobile ? "hidden sm:flex" : "flex"} shrink-0 justify-center items-center w-12 h-12 rounded-full bg-white ml-2 hover:bg-gray-200 transition-all ${(filterState.geo[0] !== "전체" || filterState.geo[1] !== "전체") && "border-2 border-solid border-indigo-300"}`}
+          className={`geoFilter ${!isMobile ? "hidden sm:flex" : "flex"} shrink-0 justify-center items-center w-12 h-12 rounded-full bg-white ml-2 hover:bg-gray-200 transition-all ${isFilterActive("geo", filterState) && "border-2 border-solid border-indigo-300"}`}
           onClick={(e) => handleFilterBtn(e)}
         >
           <svg
@@ -79,7 +91,7 @@ function Search({ isMobile }: { isMobile: boolean }) {
         </button>
         <button
           type="button"
-          className={`budgetFilter ${!isMobile ? "hidden sm:flex" : "flex"} shrink-0 justify-center items-center w-12 h-12 rounded-full bg-white ml-2 hover:bg-gray-200 transition-all ${(filterState.budget[0] !== (null || 0) || filterState.budget[1] !== (null || 0)) && "border-2 border-solid border-indigo-300"}`}
+          className={`budgetFilter ${!isMobile ? "hidden sm:flex" : "flex"} shrink-0 justify-center items-center w-12 h-12 rounded-full bg-white ml-2 hover:bg-gray-200 transition-all ${isFilterActive("budget", filterState) && "border-2 border-solid border-indigo-300"}`}
           onClick={(e) => handleFilterBtn(e)}
         >
           <svg
