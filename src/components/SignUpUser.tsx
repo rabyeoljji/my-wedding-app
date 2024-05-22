@@ -71,7 +71,7 @@ const SignUpUser = (): JSX.Element => {
   };
 
   return (
-    <form className="flex flex-col justify-center items-center" onSubmit={(e) => submitSignUp(e)}>
+    <form className="flex flex-col justify-center items-center mt-24 mb-20" onSubmit={(e) => submitSignUp(e)}>
       <h1 className="text-3xl font-bold mb-12">회원가입</h1>
       <div className="w-80 sm:w-96 flex justify-between items-center mb-2">
         <label>이메일</label>
@@ -117,7 +117,7 @@ const SignUpUser = (): JSX.Element => {
       </div>
       <button
         type="submit"
-        className="border-solid border-2 border-gray-200 rounded px-4 py-1 mt-12 hover:bg-gray-200 transition-all"
+        className="border-solid border-2 border-gray-200 rounded px-4 py-1 mt-12 hover:bg-gray-200 transition-all mb-12"
       >
         가입하기
       </button>

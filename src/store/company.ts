@@ -1,4 +1,9 @@
-import CONSTANTS from "../constants/envConstants";
+import { DocumentData } from "firebase/firestore";
+import { atom } from "jotai";
 
-const productsURL = `${CONSTANTS.IS_DEV ? `/proxy` : `${import.meta.env.VITE_APP_HOST_URL /*->TODO: API통신 URL*/}`}/products`;
-console.log(productsURL);
+// TODO
+// isWishList?: userInfoType["wishList"],
+
+export const businessAtom = atom<DocumentData[]>([]);
+export const filteredListAtom = atom<DocumentData[]>([]);
+export const renderingListAtom = atom<DocumentData[]>([]);

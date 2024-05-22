@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useLogin } from "../auth/LoginOutAuth";
 import { useSetAtom } from "jotai";
-import { fetchUniqueData, userAtom } from "../store/userInfo";
+import { fetchUniqueUser, userAtom } from "../store/userInfo";
 import GoogleLoginBtn from "../auth/socialLogin/GoogleLoginBtn";
 import KakaoLoginBtn from "../auth/socialLogin/KakaoLoginBtn";
 
@@ -50,7 +50,7 @@ const LoginUser = (): JSX.Element => {
     const uid = login({ ...inputState });
 
     if ((await uid).valueOf()) {
-      fetchUniqueData("users", (await uid).valueOf()).then((result) => {
+      fetchUniqueUser("users", (await uid).valueOf()).then((result) => {
         if (result) {
           setUserInfo({
             uid: result.uid,
@@ -65,7 +65,7 @@ const LoginUser = (): JSX.Element => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center mt-24 mb-20">
       <h1 className="text-3xl font-bold mb-12">LOGIN</h1>
       <form className="flex justify-center items-center" onSubmit={(e) => submitLogin(e)}>
         <div className="flex flex-col justify-center items-center">
@@ -99,7 +99,7 @@ const LoginUser = (): JSX.Element => {
       </form>
       <GoogleLoginBtn />
       <KakaoLoginBtn />
-      <div className="flex justify-between items-center w-80">
+      <div className="flex justify-between items-center w-80 mb-12">
         <button
           type="button"
           className="border-solid border-2 border-gray-200 rounded px-4 py-1 mt-12 hover:bg-gray-200 transition-all"

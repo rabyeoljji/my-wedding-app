@@ -1,7 +1,7 @@
 import PasswordReset from "../components/PasswordReset";
 
-const PasswordResetPage = (): JSX.Element => {
+const PasswordResetView = (): JSX.Element => {
   return <PasswordReset />;
 };
 
-export default PasswordResetPage;
+export default PasswordResetView;

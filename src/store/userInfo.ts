@@ -1,14 +1,10 @@
 import { doc, getDoc } from "firebase/firestore";
 import { atom } from "jotai";
 import { db } from "../firebase";
+import { userAuthAtomType, userInfoType } from "../@types/User";
 // jotai를 이용한 userInfo 전역 상태관리
 
 // user auth상태
-export interface userAuthAtomType {
-  uid: string;
-  email: string;
-  authToken?: Promise<string>;
-}
 export const initialAuth = {
   uid: "",
   email: "",
@@ -16,12 +12,6 @@ export const initialAuth = {
 export const userAuthAtom = atom<userAuthAtomType>(initialAuth);
 
 // user info상태
-export interface userInfoType {
-  uid: string;
-  nickname: string;
-  wishList: string[];
-  reviews: string[];
-}
 let initialUserInfo = {
   uid: "",
   nickname: "",
@@ -30,8 +20,8 @@ let initialUserInfo = {
 };
 export const userAtom = atom<userInfoType>(initialUserInfo);
 
-// 특정 doc 가져오기
-export const fetchUniqueData = async (collectionName: string, docId: string) => {
+// 특정 유저 정보 가져오기
+export const fetchUniqueUser = async (collectionName: string, docId: string) => {
   const docRef = doc(db, collectionName, docId);
   const docData = await getDoc(docRef);
 
@@ -43,5 +33,3 @@ export const fetchUniqueData = async (collectionName: string, docId: string) => 
     return false;
   }
 };
-
-export const fetchAllData = async (collectionName: string) => {};

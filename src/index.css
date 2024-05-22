@@ -5,6 +5,20 @@
 *:focus {
   outline-color: rgb(55 48 163);
 }
+body {
+  width: 100vw;
+  overflow-x: hidden;
+}
+input[type="radio"] {
+  opacity: 0;
+}
+.hiddenScroll::-webkit-scrollbar {
+  display: none; /* 크롬, 사파리, 오페라, 엣지 */
+}
+.hiddenScroll {
+  -ms-overflow-style: none; /* 인터넷 익스플로러 */
+  scrollbar-width: none; /* 파이어폭스 */
+}
 
 .noto-serif-kr-regular {
   font-family: "Noto Serif KR", serif;

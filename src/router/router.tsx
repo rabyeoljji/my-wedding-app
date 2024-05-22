@@ -4,11 +4,13 @@ import Error from "../views/Error";
 import Index from "../views/Index";
 import SignUp from "../views/SignUp";
 import Login from "../views/Login";
-import Profile from "../views/Profile";
-import MyReviews from "../views/MyReviews";
-import WishList from "../views/WishList";
-import PasswordResetPage from "../views/PasswordResetPage";
+import UserProfileView from "../views/UserProfileView";
+import MyReviewsView from "../views/MyReviewsView";
+import WishListView from "../views/WishListView";
+import PasswordResetView from "../views/PasswordResetView";
 import ProcessKakaoToken from "../auth/socialLogin/ProcessKakaoToken";
+import BusinessItemView from "../views/BusinessItemView";
+import ReviewEditor from "../components/ReviewEditor";
 
 const Router = (): JSX.Element => {
   return (
@@ -17,11 +19,13 @@ const Router = (): JSX.Element => {
       <Route path="/" element={<Index />} />
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/password-reset" element={<PasswordResetPage />} />
+      <Route path="/password-reset" element={<PasswordResetView />} />
       <Route path="/kakaoAuth" element={<ProcessKakaoToken />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/my-reviews" element={<MyReviews />} />
-      <Route path="/wishlist" element={<WishList />} />
+      <Route path="/profile/:category" element={<UserProfileView />} />
+      <Route path="/my-reviews" element={<MyReviewsView />} />
+      {/* <Route path="/wishlist" element={<WishListView />} /> */}
+      <Route path="/business/:id" element={<BusinessItemView />} />
+      <Route path="/review-edit-page/:id" element={<ReviewEditor />} />
     </Routes>
   );
 };

@@ -2,6 +2,7 @@ import { useAtomValue } from "jotai";
 import { userAtom } from "../store/userInfo";
 import { Link } from "react-router-dom";
 import { useLogout } from "../auth/LoginOutAuth";
+import { categories } from "../@types/Filter";
 
 function Drawer() {
   const userInfo = useAtomValue(userAtom);
@@ -51,7 +52,7 @@ function Drawer() {
               ) : (
                 <>
                   <Link
-                    to={"/profile"}
+                    to={"/profile/all"}
                     className="flex justify-between items-center w-28"
                     onClick={() => closeDrawer()}
                   >
@@ -93,31 +94,13 @@ function Drawer() {
                 </Link>
                 <h3 className="mt-8 mb-4 text-xl font-bold">WISHLIST</h3>
                 <ul>
-                  <li className="flex justify-center items-center text-lg">
-                    <Link to={"/wishlist"} onClick={() => closeDrawer()}>
-                      공간
-                    </Link>
-                  </li>
-                  <li className="flex justify-center items-center text-lg">
-                    <Link to={"/wishlist"} onClick={() => closeDrawer()}>
-                      컨설팅
-                    </Link>
-                  </li>
-                  <li className="flex justify-center items-center text-lg">
-                    <Link to={"/wishlist"} onClick={() => closeDrawer()}>
-                      사진
-                    </Link>
-                  </li>
-                  <li className="flex justify-center items-center text-lg">
-                    <Link to={"/wishlist"} onClick={() => closeDrawer()}>
-                      꽃
-                    </Link>
-                  </li>
-                  <li className="flex justify-center items-center text-lg">
-                    <Link to={"/wishlist"} onClick={() => closeDrawer()}>
-                      음식
-                    </Link>
-                  </li>
+                  {categories.map((category) => (
+                    <li key={category.en} className="flex justify-center items-center text-lg">
+                      <Link to={`/profile/${category.en}`} onClick={() => closeDrawer()}>
+                        {category.kr}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </>
             )}

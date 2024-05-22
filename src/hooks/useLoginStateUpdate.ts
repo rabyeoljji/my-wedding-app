@@ -1,7 +1,7 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../firebase";
 import { useSetAtom } from "jotai";
-import { fetchUniqueData, userAtom } from "../store/userInfo";
+import { fetchUniqueUser, userAtom } from "../store/userInfo";
 import { doc, setDoc } from "firebase/firestore";
 
 export const useLoginStateUpdate = () => {
@@ -10,7 +10,7 @@ export const useLoginStateUpdate = () => {
   const authConnectState = () => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const userInfo = await fetchUniqueData("users", user.uid);
+        const userInfo = await fetchUniqueUser("users", user.uid);
         if (userInfo) {
           setUserInfo({
             uid: userInfo.uid,
