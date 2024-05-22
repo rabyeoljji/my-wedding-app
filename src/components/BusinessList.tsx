@@ -23,9 +23,9 @@ const BusinessList = ({ type }: BusinessPropsType): JSX.Element => {
   const [filteredList, setFilteredList] = useAtom(filteredListAtom);
   const [renderingList, setRenderingList] = useAtom(renderingListAtom);
   const currentPage = useAtomValue(currentPageAtom);
-  const [renderDataIndex, setRenderDataIndex] = useState([0, 4]);
-
   const userInfo = useAtomValue(userAtom);
+
+  const [renderDataIndex, setRenderDataIndex] = useState([0, 4]);
 
   const filteredCategoryList = useMemo(
     () => filterCategory(businessList, categoryState),
