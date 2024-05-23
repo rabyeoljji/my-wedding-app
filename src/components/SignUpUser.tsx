@@ -71,9 +71,9 @@ const SignUpUser = (): JSX.Element => {
   };
 
   return (
-    <form className="flex flex-col justify-center items-center mt-24 mb-20" onSubmit={(e) => submitSignUp(e)}>
+    <form className="flex flex-col justify-center items-center mt-24 mb-20 w-4/5" onSubmit={(e) => submitSignUp(e)}>
       <h1 className="text-3xl font-bold mb-12">회원가입</h1>
-      <div className="w-80 sm:w-96 flex justify-between items-center mb-2">
+      <div className="w-full sm:w-96 flex justify-between items-center mb-2">
         <label>이메일</label>
         <input
           type="email"
@@ -83,7 +83,7 @@ const SignUpUser = (): JSX.Element => {
           onChange={(e) => changeState(e)}
         ></input>
       </div>
-      <div className="w-80 sm:w-96 flex justify-between items-center mb-2">
+      <div className="w-full sm:w-96 flex justify-between items-center mb-2">
         <label>비밀번호</label>
         <input
           type="password"
@@ -94,7 +94,7 @@ const SignUpUser = (): JSX.Element => {
           onChange={(e) => changeState(e)}
         ></input>
       </div>
-      <div className="w-80 sm:w-96 flex justify-between items-center mb-2">
+      <div className="w-full sm:w-96 flex justify-between items-center mb-2">
         <label>비밀번호 확인</label>
         <input
           type="password"
@@ -105,7 +105,7 @@ const SignUpUser = (): JSX.Element => {
           onChange={(e) => changeState(e)}
         ></input>
       </div>
-      <div className="w-80 sm:w-96 flex justify-between items-center mt-10">
+      <div className="w-full sm:w-96 flex justify-between items-center mt-10">
         <label>닉네임</label>
         <input
           type="text"

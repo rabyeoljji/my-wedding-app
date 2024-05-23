@@ -65,26 +65,26 @@ const LoginUser = (): JSX.Element => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center mt-24 mb-20">
+    <div className="flex flex-col justify-center items-center mt-24 mb-20 w-4/5">
       <h1 className="text-3xl font-bold mb-12">LOGIN</h1>
-      <form className="flex justify-center items-center" onSubmit={(e) => submitLogin(e)}>
+      <form className="w-full flex justify-center items-center" onSubmit={(e) => submitLogin(e)}>
         <div className="flex flex-col justify-center items-center">
-          <div className="w-64 sm:w-96 flex justify-between items-center my-2">
-            <label>이메일</label>
+          <div className="sm:w-96 flex justify-between items-center my-2">
+            <label className="w-16">이메일</label>
             <input
               type="email"
               name="email"
-              className="w-44 sm:w-56 border-solid border-2 border-gray-200 rounded sm:ml-12 placeholder:text-slate-400 placeholder:text-xs indent-2.5 py-1"
+              className="w-40 sm:w-56 border-solid border-2 border-gray-200 rounded sm:ml-12 placeholder:text-slate-400 placeholder:text-xs indent-2.5 py-1"
               placeholder="mywedding@example.com"
               onChange={(e) => changeState(e)}
             ></input>
           </div>
-          <div className="w-64 sm:w-96 flex justify-between items-center mb-2">
-            <label>비밀번호</label>
+          <div className="sm:w-96 flex justify-between items-center mb-2">
+            <label className="w-16">비밀번호</label>
             <input
               type="password"
               name="password"
-              className="w-44 sm:w-56 border-solid border-2 border-gray-200 rounded sm:ml-12 placeholder:text-xs indent-2.5 py-1"
+              className="w-40 sm:w-56 border-solid border-2 border-gray-200 rounded sm:ml-12 placeholder:text-xs indent-2.5 py-1"
               placeholder="비밀번호를 입력해주세요"
               onChange={(e) => changeState(e)}
             ></input>
@@ -92,14 +92,14 @@ const LoginUser = (): JSX.Element => {
         </div>
         <button
           type="submit"
-          className="h-16 border-solid border-2 border-gray-200 rounded px-2 py-1 ml-4 hover:bg-gray-200 transition-all"
+          className="h-16 border-solid border-2 border-gray-200 rounded px-2 py-1 ml-2 hover:bg-gray-200 transition-all"
         >
           LOGIN
         </button>
       </form>
       <GoogleLoginBtn />
       <KakaoLoginBtn />
-      <div className="flex justify-between items-center w-80 mb-12">
+      <div className="flex justify-between items-center w-full max-w-80 mb-12">
         <button
           type="button"
           className="border-solid border-2 border-gray-200 rounded px-4 py-1 mt-12 hover:bg-gray-200 transition-all"
