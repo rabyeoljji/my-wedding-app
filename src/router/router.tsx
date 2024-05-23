@@ -6,7 +6,6 @@ import SignUp from "../views/SignUp";
 import Login from "../views/Login";
 import UserProfileView from "../views/UserProfileView";
 import MyReviewsView from "../views/MyReviewsView";
-import WishListView from "../views/WishListView";
 import PasswordResetView from "../views/PasswordResetView";
 import ProcessKakaoToken from "../auth/socialLogin/ProcessKakaoToken";
 import BusinessItemView from "../views/BusinessItemView";
@@ -23,7 +22,6 @@ const Router = (): JSX.Element => {
       <Route path="/kakaoAuth" element={<ProcessKakaoToken />} />
       <Route path="/profile/:category" element={<UserProfileView />} />
       <Route path="/my-reviews" element={<MyReviewsView />} />
-      {/* <Route path="/wishlist" element={<WishListView />} /> */}
       <Route path="/business/:id" element={<BusinessItemView />} />
       <Route path="/review-edit-page/:id" element={<ReviewEditor />} />
     </Routes>

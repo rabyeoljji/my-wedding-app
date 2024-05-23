@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { ReviewType } from "../@types/Review";
 import { Link } from "react-router-dom";
 import { userAtom } from "../store/userInfo";
+import { v4 as uuid4 } from "uuid";
 
 const BusinessItem = (): JSX.Element => {
   const { id } = useParams();
@@ -96,7 +97,7 @@ const BusinessItem = (): JSX.Element => {
             <div className="w-full h-10 border-b-2 border-solid border-gray-200 flex justify-center items-center">
               {`리뷰 (총 : ${item.reviews.length}개)`}
               <Link
-                to={`/review-edit-page/${item.id}_review${item.reviews.length + 1}`}
+                to={`/review-edit-page/${uuid4()}`}
                 className="px-2 py-1 bg-indigo-200 hover:bg-indigo-500 rounded-lg hover:text-white absolute right-12 sm:right-20 lg:right-36 xl:right-48"
               >
                 작성하기

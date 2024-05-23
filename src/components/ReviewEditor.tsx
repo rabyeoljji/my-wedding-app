@@ -1,5 +1,9 @@
+import { useParams } from "react-router";
+
 const ReviewEditor = (): JSX.Element => {
-  return <></>;
+  const { id } = useParams();
+
+  return <div>review id : {id}</div>;
 };
 
 export default ReviewEditor;
