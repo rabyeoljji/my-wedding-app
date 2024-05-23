@@ -1,16 +1,20 @@
 import { useAtom } from "jotai";
 import { deleteWishList, postWishList } from "../../store/fetchData";
 import { userAtom } from "../../store/userInfo";
+import { useNavigate } from "react-router";
 
 const HeartIcon = ({ id, check }: { id: string; check?: boolean }): JSX.Element => {
+  const navigate = useNavigate();
   const [userInfo, setUserInfo] = useAtom(userAtom);
-
-  // useEffect(() => {
-  //   console.log(userInfo.wishList);
-  // }, [userInfo.wishList]);
 
   const handleClick = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     const target = e.target as HTMLElement;
+
+    if (!userInfo.uid) {
+      alert("로그인 후 이용하실 수 있습니다.");
+      navigate("/login");
+      return;
+    }
 
     const parameters = {
       userId: userInfo.uid,
