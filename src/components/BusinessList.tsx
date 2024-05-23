@@ -90,7 +90,11 @@ const BusinessList = ({ type }: BusinessPropsType): JSX.Element => {
             >
               <Link to={`/business/${data.id}`} className="flex items-center">
                 {data.image ? (
-                  <img src={data.image} alt={data.name} className="w-16 h-16 sm:w-28 sm:h-28 mr-4 rounded-lg"></img>
+                  <img
+                    src={data.image}
+                    alt={data.name}
+                    className="w-16 min-w-12 h-16 sm:w-28 sm:h-28 mr-4 rounded-lg"
+                  ></img>
                 ) : (
                   <div className="w-16 h-16 sm:w-28 sm:h-28 mr-4 rounded-lg bg-gray-200 flex justify-center items-center">
                     no image
@@ -98,8 +102,8 @@ const BusinessList = ({ type }: BusinessPropsType): JSX.Element => {
                 )}
                 {/* 이미지 */}
                 <RenderIcon category={data.category} /> {/* 카테고리 아이콘 */}
-                <div className="h-full flex flex-col md:flex-row md:items-center">
-                  <div className="md:ml-4 w-28 md:w-36 lg:w-40 xl:w-48 text-ellipsis overflow-hidden">
+                <div className="min-w-24 h-full flex flex-col md:flex-row md:items-center">
+                  <div className="md:ml-4 w-24 md:w-36 lg:w-40 xl:w-48 text-ellipsis overflow-hidden">
                     <p className="inline-block w-full break-keep">
                       <b>{data.name}</b>
                     </p>
@@ -116,7 +120,7 @@ const BusinessList = ({ type }: BusinessPropsType): JSX.Element => {
                 </div>
               </Link>
               <div className="flex items-center">
-                <div className="flex flex-col items-center mr-4">
+                <div className="flex flex-col items-center min-w-20">
                   {data.min_cost && data.max_cost ? (
                     <>
                       <p>{data.min_cost.toLocaleString()}원</p>

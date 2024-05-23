@@ -33,7 +33,7 @@ function Drawer() {
         </div>
         <div className="drawer-side">
           <label htmlFor="profileDrawer" aria-label="close sidebar" className="drawer-overlay"></label>
-          <div className="menu p-4 w-80 min-h-full bg-base-200 text-base-content flex flex-col items-center">
+          <div className="menu p-4 w-72 sm:w-80 min-h-full bg-base-200 text-base-content flex flex-col items-center">
             {/* Sidebar content here */}
             <div className="bg-gray-200 w-56 h-28 mt-4 rounded-lg flex flex-col justify-end items-center">
               {userInfo.nickname === "" ? (
