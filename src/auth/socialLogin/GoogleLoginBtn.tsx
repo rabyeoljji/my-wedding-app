@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup, signInWithRedirect } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router";
 
@@ -7,7 +7,10 @@ const GoogleLoginBtn = (): JSX.Element => {
 
   const clickGoogleLogin = async () => {
     const provider = new GoogleAuthProvider();
-    await signInWithRedirect(auth, provider);
+    await signInWithPopup(auth, provider);
+    // await signInWithRedirect(auth, provider).catch(() => {
+    //   signInWithPopup(auth, provider)
+    // })
   };
 
   return (
