@@ -21,15 +21,19 @@ let initialUserInfo = {
 export const userAtom = atom<userInfoType>(initialUserInfo);
 
 // 특정 유저 정보 가져오기
-export const fetchUniqueUser = async (collectionName: string, docId: string) => {
+export const fetchUniqueUser = async (collectionName: string, docId: string, type?: string) => {
   const docRef = doc(db, collectionName, docId);
   const docData = await getDoc(docRef);
 
   if (docData.exists()) {
     return docData.data();
   } else {
-    alert("등록되지 않은 회원입니다");
-    console.log("No such document!");
+    if (type === "login") {
+      alert("등록되지 않은 회원입니다");
+      console.log("No such document!");
+    } else {
+      alert("구글 계정으로 회원가입 되었습니다");
+    }
     return false;
   }
 };

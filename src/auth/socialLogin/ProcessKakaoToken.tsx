@@ -5,7 +5,7 @@ import { useLogin } from "../LoginOutAuth";
 
 const ProcessKakaoToken = (): JSX.Element => {
   const navigate = useNavigate();
-  const login = useLogin();
+  const login = useLogin(true);
   const [searchParams, setSearchParams] = useSearchParams();
   const code = searchParams.get("code");
 

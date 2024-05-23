@@ -5,9 +5,9 @@ import { useNavigate } from "react-router";
 const GoogleLoginBtn = (): JSX.Element => {
   const navigate = useNavigate();
 
-  const clickGoogleLogin = () => {
+  const clickGoogleLogin = async () => {
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
+    await signInWithRedirect(auth, provider);
   };
 
   return (

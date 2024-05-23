@@ -8,7 +8,7 @@ export interface LoginInputType {
   password: string;
 }
 
-export const useLogin = () => {
+export const useLogin = (kakao?: boolean) => {
   const setAuthInfo = useSetAtom(userAuthAtom);
 
   const login = async ({ email, password }: LoginInputType) => {
@@ -24,7 +24,7 @@ export const useLogin = () => {
         return uid;
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         if (error.code == "auth/invalid-email") {
           alert("이메일 형식을 확인해주세요");
         }
@@ -38,7 +38,7 @@ export const useLogin = () => {
           alert("잠시 후 다시 시도해 주세요");
         }
         if (error.code == "auth/invalid-login-credentials") {
-          alert("이메일과 비밀번호를 확인해주세요");
+          if (!kakao) alert("이메일과 비밀번호를 확인해주세요");
         }
         return "";
       });

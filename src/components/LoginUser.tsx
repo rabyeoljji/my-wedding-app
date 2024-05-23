@@ -50,7 +50,7 @@ const LoginUser = (): JSX.Element => {
     const uid = login({ ...inputState });
 
     if ((await uid).valueOf()) {
-      fetchUniqueUser("users", (await uid).valueOf()).then((result) => {
+      fetchUniqueUser("users", (await uid).valueOf(), "login").then((result) => {
         if (result) {
           setUserInfo({
             uid: result.uid,
