@@ -8,7 +8,7 @@ export const fetchAllBusiness = async () => {
   querySnapshot.forEach((doc) => {
     filteredList.push(doc.data());
   });
-  console.log(filteredList);
+  // console.log(filteredList);
 
   return filteredList;
 };
