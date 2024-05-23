@@ -8,7 +8,7 @@ import User from "./navItems/User";
 function Nav() {
   return (
     <>
-      <div className="flex justify-center items-center w-screen h-32 pt-6 sm:pt-0 sm:h-20 bg-indigo-50 sm:mt-8 sticky top-0">
+      <div className="flex justify-center items-center w-screen h-32 pt-10 sm:pt-0 sm:h-20 bg-indigo-50 sm:mt-8 sticky top-0">
         <SearchBtn />
         <Link to="/">
           <img className="hidden sm:inline-block h-20" src={myWeddingLogo} alt="로고이미지" />

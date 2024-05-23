@@ -58,49 +58,52 @@ const GeoFilter = (): JSX.Element => {
       <div className="outSide absolute top-0 left-0 w-screen h-screen z-998"></div>
       <div
         id="filterContainer"
-        className={`${!isActiveSearchBar ? "hidden" : "flex"} sm:flex w-full h-32 absolute z-999 top-20 bg-white border-2 border-solid border-indigo-100 justify-center items-center`}
+        className={`${!isActiveSearchBar ? "hidden" : "flex"} sm:flex flex-col w-full h-32 absolute z-999 top-20 bg-white border-2 border-solid border-indigo-100 justify-center items-center`}
       >
-        <button
-          className="selectCity w-28 h-8 border-2 border-solid border-gray-200 rounded-lg bg-white flex justify-center items-center mx-4"
-          onClick={(e) => handleDropDown(e)}
-        >
-          {filterState.geo[0]}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="#c0c0c0"
-            className="selectCity bi bi-caret-down-fill ml-2"
-            viewBox="0 0 16 16"
+        <p className="mb-2 font-bold">찾는 지역</p>
+        <div className="flex justify-center items-center w-full">
+          <button
+            className="selectCity w-28 h-8 border-2 border-solid border-gray-200 rounded-lg bg-white flex justify-center items-center mx-4"
+            onClick={(e) => handleDropDown(e)}
           >
-            <path
-              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
-              className="selectCity"
-            />
-          </svg>
-        </button>
-        <button
-          className="selectCounty w-28 h-8 border-2 border-solid border-gray-200 rounded-lg bg-white flex justify-center items-center mx-4"
-          onClick={(e) => handleDropDown(e)}
-        >
-          {filterState.geo[1]}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="#c0c0c0"
-            className="selectCounty bi bi-caret-down-fill ml-2"
-            viewBox="0 0 16 16"
+            {filterState.geo[0]}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="#c0c0c0"
+              className="selectCity bi bi-caret-down-fill ml-2"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
+                className="selectCity"
+              />
+            </svg>
+          </button>
+          <button
+            className="selectCounty w-28 h-8 border-2 border-solid border-gray-200 rounded-lg bg-white flex justify-center items-center mx-4"
+            onClick={(e) => handleDropDown(e)}
           >
-            <path
-              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
-              className="selectCounty"
-            />
-          </svg>
-        </button>
+            {filterState.geo[1]}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="#c0c0c0"
+              className="selectCounty bi bi-caret-down-fill ml-2"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
+                className="selectCounty"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
       <div
-        className={`${!isOpen && "hidden"} absolute inset-x-auto top-44 w-56 max-h-52 border-2 border-solid border-gray-200 rounded-lg z-30 bg-white overflow-y-scroll`}
+        className={`${!isOpen && "hidden"} absolute inset-x-auto top-48 w-56 max-h-52 border-2 border-solid border-gray-200 rounded-lg z-30 bg-white overflow-y-scroll`}
         onClick={(e) => selectGeo(e)}
       >
         <div className="header h-8 flex justify-center items-center border-b-2 border-solid border-gray-200 bg-gray-100 sticky top-0">

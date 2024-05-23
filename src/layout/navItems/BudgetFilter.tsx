@@ -45,6 +45,11 @@ const BudgetFilter = (): JSX.Element => {
     }
   };
 
+  const resetBudgetFilter = () => {
+    setMinCostInput(() => "");
+    setMaxCostInput(() => "");
+  };
+
   return (
     <>
       <div className="outSide absolute top-0 left-0 w-screen h-screen z-998"></div>
@@ -52,8 +57,8 @@ const BudgetFilter = (): JSX.Element => {
         id="filterContainer"
         className={`${!isActiveSearchBar ? "hidden" : "flex"} sm:flex flex-col w-full h-32 absolute z-999 top-20 bg-white border-2 border-solid border-indigo-100 justify-center items-center`}
       >
-        <p className="mb-4">예산 범위</p>
-        <div className="flex">
+        <p className="mb-2 font-bold">예산 범위</p>
+        <div className="flex items-center">
           <input
             type="number"
             className="minCost w-40 h-8 border-2 border-solid border-gray-200 rounded-lg bg-white indent-2.5"
@@ -63,6 +68,7 @@ const BudgetFilter = (): JSX.Element => {
             onChange={(e) => handleChange(e)}
             value={minCostInput}
           />
+          {`원`}
           <p className="mx-2">~</p>
           <input
             type="number"
@@ -73,7 +79,15 @@ const BudgetFilter = (): JSX.Element => {
             onChange={(e) => handleChange(e)}
             value={maxCostInput}
           />
+          {`원`}
         </div>
+        <button
+          type="button"
+          className="text-xs py-1 px-2 mt-2 bg-indigo-100 rounded-lg"
+          onClick={() => resetBudgetFilter()}
+        >
+          초기화
+        </button>
       </div>
     </>
   );
