@@ -32,7 +32,7 @@ function SearchBtn() {
         </svg>
       </button>
       <div
-        className={`${!isActive && "hidden"} sm:hidden flex justify-center items-center w-screen h-20 bg-indigo-50 absolute top-32`}
+        className={`${!isActive && "hidden"} sm:hidden flex justify-center items-center w-screen h-20 bg-indigo-50 absolute top-28`}
       >
         <Search isMobile={true} />
       </div>

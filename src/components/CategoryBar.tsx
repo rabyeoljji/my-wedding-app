@@ -18,7 +18,7 @@ const CategoryBar = (): JSX.Element => {
 
   return (
     <>
-      <div className="w-full h-auto mt-4 mb-12 sm:mt-0 mb-16 md:mb-8 rounded-lg flex flex-col md:flex-row justify-between items-center overflow-hidden">
+      <div className="w-full h-auto mt-4 mb-12 sm:mt-0 mb-12 md:mb-8 rounded-lg flex flex-col md:flex-row justify-between items-center overflow-hidden">
         <p className="font-bold text-lg mb-4 md:mb-0 md:mr-4">CATEGORY</p>
         <div className="overflow-x-auto hiddenScroll flex justify-between items-center grow w-full sm:m-0 lg:pr-14 lg:pl-4">
           {categories.map((category) => (
