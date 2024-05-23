@@ -38,7 +38,7 @@ const PasswordReset = (): JSX.Element => {
         </div>
         <button
           type="submit"
-          className="bg-indigo-100 py-2 px-4 flex justify-center items-center rounded hover:bg-indigo-200"
+          className="bg-indigo-100 py-2 px-4 flex justify-center items-center rounded hover:bg-indigo-200 mb-28"
         >
           보내기
         </button>

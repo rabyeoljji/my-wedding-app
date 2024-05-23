@@ -11,7 +11,11 @@ const KakaoLoginBtn = (): JSX.Element => {
 
   return (
     <>
-      <img src={KAKAO_IMG_WIDE} className="cursor-pointer mt-2 w-72" onClick={() => handleKakaoLogin()}></img>
+      <img
+        src={KAKAO_IMG_WIDE}
+        className="cursor-pointer mt-2 w-[18.5rem] h-12 border-solid border-4 border-amber-200 rounded-xl hover:border-amber-300 transition-all"
+        onClick={() => handleKakaoLogin()}
+      ></img>
     </>
   );
 };

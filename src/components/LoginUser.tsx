@@ -92,7 +92,7 @@ const LoginUser = (): JSX.Element => {
         </div>
         <button
           type="submit"
-          className="h-16 border-solid border-2 border-gray-200 rounded px-2 py-1 ml-4 hover:bg-indigo-200 hover:border-indigo-300 transition-all"
+          className="h-16 border-solid border-2 border-gray-200 rounded px-2 py-1 ml-4 hover:bg-gray-200 transition-all"
         >
           LOGIN
         </button>
