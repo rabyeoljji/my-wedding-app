@@ -30,6 +30,8 @@ const PasswordReset = (): JSX.Element => {
           }
         })
         .catch((error) => console.log(error));
+    } else {
+      alert("가입 시 작성한 이메일을 입력해주세요");
     }
   };
 
