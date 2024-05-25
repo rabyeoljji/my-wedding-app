@@ -4,10 +4,10 @@ import Rating from "../common/Rating";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { currentPageAtom } from "../store/page";
+import { ReviewListPropsType } from "../@types/Review";
 
-const ReviewList = ({ type, id, list }: { type: "business" | "user"; id?: string; list: string[] }) => {
+const ReviewList = ({ type, list, businessItemId }: ReviewListPropsType) => {
   // type === business ? list === businessReviewList : list === userReviewList
-  const businessItemId = id;
   const reviewList = useAtomValue(reviewListAtom); // 전체 리뷰리스트
   const [renderReviewList, setRenderReviewList] = useAtom(renderReviewListAtom);
   const [currentPage, setCurrentPage] = useAtom(currentPageAtom);

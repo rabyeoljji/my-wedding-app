@@ -14,3 +14,9 @@ export interface UpdateReviewType {
   reviewList: string[];
   reviewId: string;
 }
+
+export interface ReviewListPropsType {
+  type: "business" | "user";
+  list: string[];
+  businessItemId?: string;
+}

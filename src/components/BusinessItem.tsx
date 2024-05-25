@@ -144,7 +144,7 @@ const BusinessItem = (): JSX.Element => {
                 작성하기
               </Link>
             </div>
-            <ReviewList type="business" id={id ?? ""} list={renderReviews} />
+            <ReviewList type="business" list={renderReviews} businessItemId={id ?? ""} />
             <div className="w-full h-10"></div>
           </div>
           {renderReviews.length > 5 && <Pagination type="review" list={item.reviews} />}
