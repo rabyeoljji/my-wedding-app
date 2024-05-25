@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 import Pagination from "./Pagination";
 import { useAtom, useAtomValue } from "jotai";
 import { businessAtom, renderingListAtom } from "../store/company";
@@ -18,6 +18,7 @@ import Rating from "../common/Rating";
 const BusinessItem = (): JSX.Element => {
   const { id } = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [businessList, setBusinessList] = useAtom(businessAtom);
   const businessReviews = useMemo(() => {
@@ -135,6 +136,12 @@ const BusinessItem = (): JSX.Element => {
               <Link
                 to={`/review-edit-page/${uuid4()}_itemID:${id}`}
                 className={`px-2 py-1 bg-indigo-200 hover:bg-indigo-500 rounded-lg hover:text-white absolute right-12 sm:right-24 lg:right-36 xl:right-48 ${drawerState && "-z-10"}`}
+                onClick={() => {
+                  if (!userInfo.uid) {
+                    alert("로그인 후 이용하실 수 있습니다.");
+                    navigate("/login");
+                  }
+                }}
               >
                 작성하기
               </Link>
