@@ -9,9 +9,6 @@ body {
   width: 100vw;
   overflow-x: hidden;
 }
-input[type="radio"] {
-  opacity: 0;
-}
 .hiddenScroll::-webkit-scrollbar {
   display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }

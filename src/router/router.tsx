@@ -9,7 +9,8 @@ import MyReviewsView from "../views/MyReviewsView";
 import PasswordResetView from "../views/PasswordResetView";
 import ProcessKakaoToken from "../auth/socialLogin/ProcessKakaoToken";
 import BusinessItemView from "../views/BusinessItemView";
-import ReviewEditor from "../components/ReviewEditor";
+import ReviewEditorView from "../views/ReviewEditorView";
+import ReviewContentView from "../views/ReviewContentView";
 
 const Router = (): JSX.Element => {
   return (
@@ -23,7 +24,8 @@ const Router = (): JSX.Element => {
       <Route path="/profile/:category" element={<UserProfileView />} />
       <Route path="/my-reviews" element={<MyReviewsView />} />
       <Route path="/business/:id" element={<BusinessItemView />} />
-      <Route path="/review-edit-page/:id" element={<ReviewEditor />} />
+      <Route path="/review-edit-page/:id" element={<ReviewEditorView />} />
+      <Route path="/review-page/:id" element={<ReviewContentView />} />
     </Routes>
   );
 };

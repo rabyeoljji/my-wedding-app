@@ -4,16 +4,30 @@ import myWeddingLogoMobile from "../assets/logo/project_logo_mobile.png";
 import Search from "./navItems/Search";
 import SearchBtn from "./navItems/SearchBtn";
 import User from "./navItems/User";
+import { useSetAtom } from "jotai";
+import { categoryAtom, initialCategory } from "../store/category";
+import { currentPageAtom } from "../store/page";
+import { filterAtom, initialFilter } from "../store/filter";
 
 function Nav() {
+  const setCategoryState = useSetAtom(categoryAtom);
+  const setCurrentPage = useSetAtom(currentPageAtom);
+  const setFilterState = useSetAtom(filterAtom);
+
+  const goHomeAndReset = () => {
+    setCategoryState(() => initialCategory);
+    setCurrentPage(() => 1);
+    setFilterState(() => initialFilter);
+  };
+
   return (
     <>
-      <div className="flex justify-center items-center w-screen h-28 pt-0 sm:h-20 bg-indigo-50 sm:mt-8 sticky top-0">
+      <div className="flex justify-center items-center w-screen h-28 pt-0 sm:h-20 bg-indigo-50 sm:mt-8 sticky top-0 ">
         <SearchBtn />
-        <Link to="/">
+        <Link to="/" onClick={() => goHomeAndReset()}>
           <img className="hidden sm:inline-block h-20" src={myWeddingLogo} alt="로고이미지" />
         </Link>
-        <Link to="/">
+        <Link to="/" onClick={() => goHomeAndReset()}>
           <img className="sm:hidden h-20" src={myWeddingLogoMobile} alt="로고이미지" />
         </Link>
         <Search isMobile={false} />

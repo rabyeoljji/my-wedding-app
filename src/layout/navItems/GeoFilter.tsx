@@ -55,10 +55,10 @@ const GeoFilter = (): JSX.Element => {
 
   return (
     <>
-      <div className="outSide absolute top-0 left-0 w-screen h-screen z-998"></div>
+      <div className="outSide absolute top-0 left-0 w-screen h-screen"></div>
       <div
         id="filterContainer"
-        className={`${!isActiveSearchBar ? "hidden" : "flex"} sm:flex flex-col w-full h-32 absolute z-999 top-20 bg-white border-2 border-solid border-indigo-100 justify-center items-center`}
+        className={`${!isActiveSearchBar ? "hidden" : "flex"} sm:flex flex-col w-full h-32 absolute top-20 bg-white border-2 border-solid border-indigo-100 justify-center items-center`}
       >
         <p className="mb-2 font-bold">찾는 지역</p>
         <div className="flex justify-center items-center w-full">
@@ -103,7 +103,7 @@ const GeoFilter = (): JSX.Element => {
         </div>
       </div>
       <div
-        className={`${!isOpen && "hidden"} absolute inset-x-auto top-48 w-56 max-h-52 border-2 border-solid border-gray-200 rounded-lg z-30 bg-white overflow-y-scroll`}
+        className={`border-2 border-solid border-gray-200 rounded-lg bg-white ${!isOpen && "-translate-y-48 opacity-0 -z-30"} absolute inset-x-auto top-48 w-56 max-h-52 z-30 overflow-y-scroll transition-all duration-300`}
         onClick={(e) => selectGeo(e)}
       >
         <div className="header h-8 flex justify-center items-center border-b-2 border-solid border-gray-200 bg-gray-100 sticky top-0">

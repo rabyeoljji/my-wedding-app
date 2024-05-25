@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { BusinessPropsType } from "../@types/Business";
 import HeartIcon from "./icons/HeartIcon";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { businessAtom, filteredListAtom, renderingListAtom } from "../store/company";
 import { Link } from "react-router-dom";
 import { activeBudgetFilter, activeGeoFilter, filterAtom } from "../store/filter";
@@ -11,6 +11,7 @@ import { currentPageAtom } from "../store/page";
 import { userAtom } from "../store/userInfo";
 import { RenderIcon } from "./icons/RenderIcon";
 import BusinessListSkeleton from "../skeleton/BusinessListSkeleton";
+import { isActiveSearchBarAtom } from "../store/search";
 
 const BusinessList = ({ type }: BusinessPropsType): JSX.Element => {
   // businessList 상태에 데이터 배열 저장되어있음
@@ -24,6 +25,7 @@ const BusinessList = ({ type }: BusinessPropsType): JSX.Element => {
   const [renderingList, setRenderingList] = useAtom(renderingListAtom);
   const currentPage = useAtomValue(currentPageAtom);
   const userInfo = useAtomValue(userAtom);
+  const setSearchBtnActive = useSetAtom(isActiveSearchBarAtom);
 
   const [renderDataIndex, setRenderDataIndex] = useState([0, 4]);
 
@@ -36,6 +38,10 @@ const BusinessList = ({ type }: BusinessPropsType): JSX.Element => {
     [businessList, filterState.budget],
   );
   const filteredGeoList = useMemo(() => activeGeoFilter(businessList, filterState), [businessList, filterState.geo]);
+
+  useEffect(() => {
+    return setSearchBtnActive(() => false);
+  }, []);
 
   useEffect(() => {
     let newList = businessList;

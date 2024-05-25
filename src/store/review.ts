@@ -1,4 +1,5 @@
 import { atom } from "jotai";
-import { ReviewType } from "../@types/Review";
+import { DocumentData } from "firebase/firestore";
 
-export const reviewListAtom = atom<ReviewType[]>([]);
+export const reviewListAtom = atom<DocumentData[]>([]);
+export const renderReviewListAtom = atom<string[]>([]);

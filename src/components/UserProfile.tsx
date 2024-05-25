@@ -4,20 +4,28 @@ import { Link, useParams } from "react-router-dom";
 import BusinessList from "./BusinessList";
 import CategoryBar from "./CategoryBar";
 import { useEffect } from "react";
-import { categoryAtom } from "../store/category";
+import { categoryAtom, initialCategory } from "../store/category";
 import { categoryType } from "../@types/Filter";
 import Pagination from "./Pagination";
+import { currentPageAtom } from "../store/page";
+import { filterAtom, initialFilter } from "../store/filter";
 
 const UserProfile = (): JSX.Element => {
   const { category } = useParams();
   const userInfo = useAtomValue(userAtom);
   const setCategory = useSetAtom(categoryAtom);
+  const setCurrentPage = useSetAtom(currentPageAtom);
+  const setFilterState = useSetAtom(filterAtom);
 
   useEffect(() => {
     if (category && category !== "all") {
       setCategory(() => category as categoryType);
+    } else {
+      setCategory(() => initialCategory);
     }
-  }, [category]);
+    setCurrentPage(() => 1);
+    setFilterState(() => initialFilter);
+  }, [, category]);
 
   return (
     <>

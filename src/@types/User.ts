@@ -1,5 +1,3 @@
-import { DocumentData } from "firebase/firestore";
-
 interface userAuthAtomType {
   uid: string;
   email: string;
@@ -10,7 +8,7 @@ interface userInfoType {
   uid: string;
   nickname: string;
   wishList: string[];
-  reviews: DocumentData[];
+  reviews: string[];
 }
 
 export type { userAuthAtomType, userInfoType };

@@ -91,7 +91,7 @@ function Search({ isMobile }: { isMobile: boolean }) {
         </button>
         <button
           type="button"
-          className={`budgetFilter ${!isMobile ? "hidden sm:flex" : "flex"} shrink-0 justify-center items-center w-12 h-12 rounded-full bg-white ml-2 hover:bg-gray-200 transition-all ${isFilterActive("budget", filterState) && "border-2 border-solid border-indigo-300"}`}
+          className={`budgetFilter ${!isMobile ? "hidden sm:flex" : "flex"} shrink-0 justify-center items-center w-12 h-12 rounded-full bg-white ml-2 mr-2 hover:bg-gray-200 transition-all ${isFilterActive("budget", filterState) && "border-2 border-solid border-indigo-300"}`}
           onClick={(e) => handleFilterBtn(e)}
         >
           <svg

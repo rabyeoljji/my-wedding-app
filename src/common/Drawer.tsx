@@ -1,21 +1,28 @@
-import { useAtomValue } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import { userAtom } from "../store/userInfo";
 import { Link } from "react-router-dom";
 import { useLogout } from "../auth/LoginOutAuth";
 import { categories } from "../@types/Filter";
+import { drawerAtom } from "../store/drawer";
 
 function Drawer() {
   const userInfo = useAtomValue(userAtom);
+  const setDrawer = useSetAtom(drawerAtom);
   const logout = useLogout();
+
+  const openDrawer = () => {
+    setDrawer(() => true);
+  };
 
   const closeDrawer = () => {
     document.getElementById("profileDrawer")?.click();
+    setDrawer((state) => !state);
   };
 
   return (
     <>
       <div className="drawer drawer-end w-12">
-        <input id="profileDrawer" type="checkbox" className="drawer-toggle" />
+        <input id="profileDrawer" type="checkbox" className="drawer-toggle" onClick={() => openDrawer()} />
         <div className="drawer-content">
           {/* Page content here */}
           <label htmlFor="profileDrawer" className="drawer-button btn bg-white w-12 h-12 rounded-full">
@@ -31,9 +38,9 @@ function Drawer() {
             </svg>
           </label>
         </div>
-        <div className="drawer-side">
-          <label htmlFor="profileDrawer" aria-label="close sidebar" className="drawer-overlay"></label>
-          <div className="menu p-4 w-72 sm:w-80 min-h-full bg-base-200 text-base-content flex flex-col items-center">
+        <div className="drawer-side z-[100]">
+          <label htmlFor="profileDrawer" aria-label="close sidebar" className="drawer-overlay z-[100]"></label>
+          <div className="menu p-4 w-72 sm:w-80 min-h-full bg-base-200 text-base-content flex flex-col items-center relative z-[9999]">
             {/* Sidebar content here */}
             <div className="bg-gray-200 w-56 h-28 mt-4 rounded-lg flex flex-col justify-end items-center">
               {userInfo.nickname === "" ? (

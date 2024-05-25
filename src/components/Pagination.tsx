@@ -2,16 +2,14 @@ import { useAtom, useAtomValue } from "jotai";
 import { PAGE_COUNT, currentPageAtom, pageGroupAtom, pageListAtom, pageListCalc } from "../store/page";
 import { useEffect } from "react";
 import { filteredListAtom } from "../store/company";
-import { reviewListAtom } from "../store/review";
 
-const Pagination = ({ type }: { type: string }): JSX.Element => {
+const Pagination = ({ type, list }: { type: "main" | "review"; list?: string[] }): JSX.Element => {
   const [pageGroup, setPageGroup] = useAtom(pageGroupAtom);
   const [pageList, setPageList] = useAtom(pageListAtom);
   const [currentPage, setCurrentPage] = useAtom(currentPageAtom);
   const filteredList = useAtomValue(filteredListAtom);
-  const reviewList = useAtomValue(reviewListAtom);
   const totalPage =
-    type === "main" ? Math.ceil(filteredList.length / PAGE_COUNT) : Math.ceil(reviewList.length / PAGE_COUNT);
+    type === "main" ? Math.ceil(filteredList.length / PAGE_COUNT) : Math.ceil((list?.length ?? 1) / PAGE_COUNT);
   const lastPageGroup = Math.ceil(totalPage / PAGE_COUNT);
   // const lastPageGroup = 9; // dataList길이에 따라 달라져야 함
   // dataList length === 216
@@ -39,18 +37,19 @@ const Pagination = ({ type }: { type: string }): JSX.Element => {
         setCurrentPage(() => pageList[0] - 1);
       }
     } else if (targetBtn.classList.contains("next")) {
-      if (pageGroup === lastPageGroup) return;
+      if (pageGroup === lastPageGroup || currentPage === totalPage) return;
       else {
         setPageGroup(pageGroup + 1);
         setCurrentPage(() => pageList[pageList.length - 1] + 1);
       }
     } else {
-      setCurrentPage(() => Number(targetBtn.innerText));
+      if (Number(targetBtn.innerText) > totalPage) return;
+      else setCurrentPage(() => Number(targetBtn.innerText));
     }
   };
 
   return (
-    <div className="pagination mb-16">
+    <div className={`pagination mb-16 ${type === "review" && "mt-8"}`}>
       <div className="join">
         <button className="join-item btn btn-sm bg-indigo-200 prev" onClick={(e) => handleClick(e)}>{`<`}</button>
         {pageList.map((page) => (
