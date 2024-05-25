@@ -136,10 +136,12 @@ const BusinessItem = (): JSX.Element => {
               <Link
                 to={`/review-edit-page/${uuid4()}_itemID:${id}`}
                 className={`px-2 py-1 bg-indigo-200 hover:bg-indigo-500 rounded-lg hover:text-white absolute right-12 sm:right-24 lg:right-36 xl:right-48 ${drawerState && "-z-10"}`}
-                onClick={() => {
+                onClick={(e) => {
                   if (!userInfo.uid) {
+                    e.preventDefault();
                     alert("로그인 후 이용하실 수 있습니다.");
                     navigate("/login");
+                    return;
                   }
                 }}
               >
