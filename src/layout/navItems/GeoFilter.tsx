@@ -103,7 +103,7 @@ const GeoFilter = (): JSX.Element => {
         </div>
       </div>
       <div
-        className={`border-2 border-solid border-gray-200 rounded-lg bg-white ${!isOpen && "-translate-y-48 opacity-0 -z-30"} absolute inset-x-auto top-48 w-56 max-h-52 z-30 overflow-y-scroll transition-all duration-300`}
+        className={`border-2 border-solid border-gray-200 rounded-lg bg-white ${!isOpen && "-translate-y-64 opacity-0 -z-50"} absolute inset-x-auto top-48 w-56 max-h-52 z-30 overflow-y-scroll transition-all duration-300`}
         onClick={(e) => selectGeo(e)}
       >
         <div className="header h-8 flex justify-center items-center border-b-2 border-solid border-gray-200 bg-gray-100 sticky top-0">
