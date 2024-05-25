@@ -1,7 +1,14 @@
-import { DocumentData, collection, deleteDoc, doc, getDocs, setDoc, updateDoc } from "firebase/firestore";
+import { DocumentData, collection, deleteDoc, doc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore";
 import { db } from "../firebase";
 import { UpdateWishListType } from "../@types/WishList";
 import { ReviewType, UpdateReviewType } from "../@types/Review";
+
+export const checkEmail = async (email: string) => {
+  const condition = query(collection(db, "users"), where("email", "==", email));
+  const querySnapshot = await getDocs(condition);
+  if (querySnapshot.empty) return false;
+  else return true;
+};
 
 export const fetchAllBusiness = async () => {
   const filteredList: DocumentData[] = [];

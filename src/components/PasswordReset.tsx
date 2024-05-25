@@ -1,6 +1,7 @@
 import { FormEvent } from "react";
 import { sendEmail } from "../auth/PasswordResetAuth";
 import { useNavigate } from "react-router";
+import { checkEmail } from "../store/fetchData";
 
 const PasswordReset = (): JSX.Element => {
   const navigate = useNavigate();
@@ -11,12 +12,24 @@ const PasswordReset = (): JSX.Element => {
     const targetInput = targetForm.querySelector("input");
 
     if (targetInput && targetInput.value) {
-      const result = sendEmail(targetInput.value);
+      const email = targetInput.value;
+      checkEmail(email)
+        .then(async (value) => {
+          if (value) {
+            const result = sendEmail(targetInput.value);
 
-      if ((await result).valueOf()) {
-        alert("메일을 성공적으로 전송하였습니다.");
-        navigate("/login");
-      }
+            if ((await result).valueOf()) {
+              alert("메일을 성공적으로 전송하였습니다.");
+              navigate("/login");
+            }
+          } else {
+            alert(`회원으로 등록되지 않은 이메일입니다.
+가입 시 작성한 이메일을 입력해주세요.
+소셜로그인 계정일 경우 소셜 로그인을 이용해주시기 바랍니다.`);
+            return;
+          }
+        })
+        .catch((error) => console.log(error));
     }
   };
 
