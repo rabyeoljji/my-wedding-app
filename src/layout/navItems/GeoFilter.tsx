@@ -1,12 +1,14 @@
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { filterAtom } from "../../store/filter";
 import { isActiveSearchBarAtom } from "../../store/search";
 import { useEffect, useState } from "react";
 import { geoMap } from "../../store/geoMap";
+import { currentPageAtom } from "../../store/page";
 
 const GeoFilter = (): JSX.Element => {
   const isActiveSearchBar = useAtomValue(isActiveSearchBarAtom);
   const [filterState, setFilterState] = useAtom(filterAtom);
+  const setCurrentPage = useSetAtom(currentPageAtom);
   const [isOpen, setIsOpen] = useState(false);
   const [dropDownCategory, setDropDownCategory] = useState("");
 
@@ -43,12 +45,14 @@ const GeoFilter = (): JSX.Element => {
         ...filterState,
         geo: [target.innerText, "전체"],
       }));
+      setCurrentPage(() => 1);
       setIsOpen(() => false);
     } else if (dropDownCategory === "county") {
       setFilterState((filterState) => ({
         ...filterState,
         geo: [filterState.geo[0], target.innerText],
       }));
+      setCurrentPage(() => 1);
       setIsOpen(() => false);
     }
   };

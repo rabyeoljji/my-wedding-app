@@ -24,6 +24,7 @@ export const setUser = ({ email, password, nickname }: SignUpInputType) => {
       await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
         username: nickname,
+        email: email ?? "gmail",
         wish_list: [],
         reviews: [],
       });

@@ -58,7 +58,7 @@ const BusinessList = ({ type }: BusinessPropsType): JSX.Element => {
       }
       newList = newList.filter((item) => userInfo.wishList.includes(item.id));
     }
-    setFilteredList(newList);
+    setFilteredList(() => newList);
   }, [
     type,
     businessList,

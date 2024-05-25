@@ -1,3 +1,4 @@
+// import { getAuth } from "firebase-admin/auth";
 import { configInfo } from "./../../config";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
@@ -9,6 +10,7 @@ import { KakaoUser } from "../@types/KakaoUser";
 export const firebaseApp = initializeApp(configInfo.firebaseConfig);
 export const db = getFirestore(firebaseApp);
 export const auth = getAuth(firebaseApp);
+// export const auth = getAuth(firebaseApp);
 
 export const getToken = async (code: string): Promise<TokenResponse> => {
   const body = {

@@ -22,6 +22,7 @@ export const useLoginStateUpdate = () => {
           await setDoc(doc(db, "users", user.uid), {
             uid: user.uid,
             username: user.displayName,
+            email: "gmail",
             wish_list: [],
             reviews: [],
           });
