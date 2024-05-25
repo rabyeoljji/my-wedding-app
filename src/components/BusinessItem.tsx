@@ -121,15 +121,11 @@ const BusinessItem = (): JSX.Element => {
             </div>
           </div>
           <div className="w-full flex justify-center md:px-10 lg:px-20 mb-8">
-            <p>
-              평점 : {!item.reviews.length ? "아직 작성된 리뷰가 없어요!" : calcScores()}
-              {/* 리뷰가 생성되면 기존 평점과 더해 평균 내고 score필드생성해 데이터베이스 정보 갱신 */}
-            </p>
+            <p>평점 : {!item.reviews.length ? "아직 작성된 리뷰가 없어요!" : calcScores()}</p>
             {item.reviews.length !== 0 && (
               <Rating type="view" reviewId={item.id} score={Math.round(Number(calcScores()))} />
             )}
           </div>
-          {/* 리뷰리스트에 따라 렌더링 */}
           <div id="reviewContainer" className="w-full border-2 border-solid border-gray-200 mb-12">
             <div className="w-full h-10 border-b-2 border-solid border-gray-200 flex justify-center items-center">
               {`리뷰 (${item.reviews.length}개)`}
@@ -148,7 +144,6 @@ const BusinessItem = (): JSX.Element => {
                 작성하기
               </Link>
             </div>
-            {/* 리뷰 렌더링 될 위치 */}
             <ReviewList type="business" id={id ?? ""} list={renderReviews} />
             <div className="w-full h-10"></div>
           </div>
