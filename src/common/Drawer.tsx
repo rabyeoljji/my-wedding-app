@@ -4,17 +4,11 @@ import { Link } from "react-router-dom";
 import { useLogout } from "../auth/LoginOutAuth";
 import { categories } from "../@types/Filter";
 import { drawerAtom } from "../store/drawer";
-import { useEffect } from "react";
 
 function Drawer() {
   const userInfo = useAtomValue(userAtom);
-  const drawerState = useAtomValue(drawerAtom);
   const setDrawer = useSetAtom(drawerAtom);
   const logout = useLogout();
-
-  useEffect(() => {
-    console.log(drawerState);
-  }, [drawerState]);
 
   const toggleDrawer = () => {
     setDrawer((state) => !state);
