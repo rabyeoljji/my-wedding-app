@@ -4,25 +4,30 @@ import { Link } from "react-router-dom";
 import { useLogout } from "../auth/LoginOutAuth";
 import { categories } from "../@types/Filter";
 import { drawerAtom } from "../store/drawer";
+import { useEffect } from "react";
 
 function Drawer() {
   const userInfo = useAtomValue(userAtom);
+  const drawerState = useAtomValue(drawerAtom);
   const setDrawer = useSetAtom(drawerAtom);
   const logout = useLogout();
 
-  const openDrawer = () => {
-    setDrawer(() => true);
+  useEffect(() => {
+    console.log(drawerState);
+  }, [drawerState]);
+
+  const toggleDrawer = () => {
+    setDrawer((state) => !state);
   };
 
   const closeDrawer = () => {
     document.getElementById("profileDrawer")?.click();
-    setDrawer((state) => !state);
   };
 
   return (
     <>
       <div className="drawer drawer-end w-12">
-        <input id="profileDrawer" type="checkbox" className="drawer-toggle" onClick={() => openDrawer()} />
+        <input id="profileDrawer" type="checkbox" className="drawer-toggle" onClick={() => toggleDrawer()} />
         <div className="drawer-content">
           {/* Page content here */}
           <label htmlFor="profileDrawer" className="drawer-button btn bg-white w-12 h-12 rounded-full">
@@ -95,7 +100,9 @@ function Drawer() {
                 <Link
                   to={"/my-reviews"}
                   className="w-56 h-10 bg-gray-200 rounded-lg mt-4 flex justify-center items-center hover:bg-gray-300 transition-all"
-                  onClick={() => closeDrawer()}
+                  onClick={() => {
+                    closeDrawer();
+                  }}
                 >
                   내가 작성한 리뷰
                 </Link>
@@ -103,7 +110,12 @@ function Drawer() {
                 <ul>
                   {categories.map((category) => (
                     <li key={category.en} className="flex justify-center items-center text-lg">
-                      <Link to={`/profile/${category.en}`} onClick={() => closeDrawer()}>
+                      <Link
+                        to={`/profile/${category.en}`}
+                        onClick={() => {
+                          closeDrawer();
+                        }}
+                      >
                         {category.kr}
                       </Link>
                     </li>
