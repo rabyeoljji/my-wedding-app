@@ -28,6 +28,7 @@ const Review = ({ type }: { type: "editor" | "view" }): JSX.Element => {
   const [content, setContent] = useState("");
   const [date, setDate] = useState<number[]>([]);
   const [stars, setStars] = useState(0);
+  const [imageUrl, setImageUrl] = useState<string>();
 
   const titleInputRef = useRef() as React.LegacyRef<HTMLInputElement> | undefined;
   const contentInputRef = useRef() as React.LegacyRef<HTMLTextAreaElement> | undefined;
@@ -45,6 +46,7 @@ const Review = ({ type }: { type: "editor" | "view" }): JSX.Element => {
         setStars(() => reviewItem.stars);
         setTitle(() => reviewItem.title);
         setContent(() => reviewItem.contents);
+        setImageUrl(() => reviewItem.image);
       }
     }
   }, [reviewId, reviewList, type]);
@@ -68,6 +70,15 @@ const Review = ({ type }: { type: "editor" | "view" }): JSX.Element => {
     }
     if (target.name === `rating-${reviewId}`) {
       setStars(() => Number(target.value));
+    }
+  };
+
+  const handleImageFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+    if (files) {
+      const uploadImageFile = files[0];
+      const imageUrl = window.URL.createObjectURL(uploadImageFile);
+      setImageUrl(() => imageUrl);
     }
   };
 
@@ -99,7 +110,7 @@ const Review = ({ type }: { type: "editor" | "view" }): JSX.Element => {
         stars: stars,
         writer: userInfo.uid,
         business_id: itemId,
-        image: "",
+        image: imageUrl ?? "",
       };
       const businessReviews = businessList.find((item) => item.id === itemId)?.reviews;
 
@@ -130,7 +141,7 @@ const Review = ({ type }: { type: "editor" | "view" }): JSX.Element => {
       <div className="w-full">
         <Link
           to={`/business/${itemId}`}
-          className="w-48 bg-indigo-100 px-2 py-1 rounded-lg flex justify-center items-center mb-4"
+          className="w-48 bg-indigo-100 px-2 py-1 rounded-lg flex justify-center items-center mb-4 hover:bg-indigo-200"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -145,19 +156,22 @@ const Review = ({ type }: { type: "editor" | "view" }): JSX.Element => {
               d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
             />
           </svg>
-          <p className="ml-4">
+          <p className="ml-4 text-sm sm:text-base">
             해당 사업자
             <br />
             페이지로 이동하기
           </p>
         </Link>
         <form className="w-full flex flex-col" onSubmit={(e) => e.preventDefault()}>
+          {imageUrl && (
+            <img src={imageUrl} className="w-4/5 h-1/2 max-w-[700px] max-h-[600px] object-contain self-center mb-8" />
+          )}
           <div className="flex items-center border-solid border-2 border-gray-200 px-2 py-1">
             <input
               type="text"
               placeholder="제목을 입력해주세요"
               id="reviewTitle"
-              className="w-1/2 focus:outline-none px-2 py-1 placeholder:text-xs placeholder:sm:text-base"
+              className="w-1/2 focus:outline-none px-2 py-1 placeholder:text-xs placeholder:sm:text-base overflow-x-scroll text-sm sm:text-base"
               readOnly={type === "view" ? true : false}
               ref={titleInputRef}
               value={title}
@@ -172,39 +186,64 @@ const Review = ({ type }: { type: "editor" | "view" }): JSX.Element => {
             <textarea
               placeholder="내용을 입력해주세요"
               id="reviewContent"
-              className="block w-full h-80 focus:outline-none px-2 py-1 placeholder:text-xs placeholder:sm:text-base"
+              className="block w-full h-80 focus:outline-none px-2 py-1 placeholder:text-xs placeholder:sm:text-base text-sm sm:text-base"
               readOnly={type === "view" ? true : false}
               ref={contentInputRef}
               value={content}
               onChange={(e) => handleChange(e)}
             ></textarea>
           </div>
-          <div className="flex justify-end my-4 mb-12">
-            {type === "view" ? (
-              isUsersReview() && (
-                <>
-                  <button
-                    type="button"
-                    className="px-4 py-1 bg-indigo-100 rounded-lg hover:bg-indigo-200"
-                    onClick={async () => {
-                      await deleteReview();
-                      navigate(`/`);
-                      window.location.reload();
-                    }}
-                  >
-                    삭제
-                  </button>
-                  <Link
-                    to={`/review-edit-page/${reviewId}_itemID:${itemId}`}
-                    type="button"
-                    className="px-4 py-1 ml-4 bg-indigo-100 rounded-lg hover:bg-indigo-200"
-                  >
-                    편집하기
-                  </Link>
-                </>
-              )
+
+          {type === "view" ? (
+            isUsersReview() ? (
+              <div className={`flex justify-end my-4 mb-12 text-sm sm:text-base`}>
+                <button
+                  type="button"
+                  className="px-4 py-1 bg-indigo-100 rounded-lg hover:bg-indigo-200"
+                  onClick={async () => {
+                    await deleteReview();
+                    navigate(`/`);
+                    window.location.reload();
+                  }}
+                >
+                  삭제
+                </button>
+                <Link
+                  to={`/review-edit-page/${reviewId}_itemID:${itemId}`}
+                  type="button"
+                  className="px-4 py-1 ml-4 bg-indigo-100 rounded-lg hover:bg-indigo-200"
+                >
+                  편집하기
+                </Link>
+              </div>
             ) : (
-              <>
+              <div className={`flex my-4 mb-12`}></div>
+            )
+          ) : (
+            <div className="flex flex-col sm:flex-row justify-between my-4 mb-12">
+              <div className="flex items-center mb-8 sm:mb-0">
+                <label htmlFor="reviewImage">
+                  <div className="px-4 py-1 border-solid border-2 border-indigo-200 bg-white rounded-lg hover:border-indigo-300 cursor-pointer text-xs sm:text-base">
+                    이미지 업로드
+                  </div>
+                </label>
+                <input
+                  type="file"
+                  name="reviewImage"
+                  id="reviewImage"
+                  accept=".jpg,.jpeg,.gif,.bmp,.png,.webp"
+                  className="hidden"
+                  onChange={(e) => handleImageFile(e)}
+                />
+                {imageUrl ? (
+                  <>
+                    <img src={imageUrl} className="w-8 h-8 mx-2" />
+                  </>
+                ) : (
+                  <span className="mx-2 text-[0.5rem] sm:text-xs">첨부한 이미지가 없습니다.</span>
+                )}
+              </div>
+              <div className="flex justify-end items-center text-sm sm:text-base">
                 <button
                   type="button"
                   className="px-4 py-1 bg-indigo-100 rounded-lg hover:bg-indigo-200"
@@ -212,7 +251,6 @@ const Review = ({ type }: { type: "editor" | "view" }): JSX.Element => {
                 >
                   취소
                 </button>
-
                 <button
                   type="button"
                   className="px-4 py-1 bg-indigo-100 rounded-lg ml-4 hover:bg-indigo-200"
@@ -224,9 +262,9 @@ const Review = ({ type }: { type: "editor" | "view" }): JSX.Element => {
                 >
                   저장
                 </button>
-              </>
-            )}
-          </div>
+              </div>
+            </div>
+          )}
         </form>
       </div>
     </div>
