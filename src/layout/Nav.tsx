@@ -22,7 +22,7 @@ function Nav() {
 
   return (
     <>
-      <div className="flex justify-center items-center w-screen h-28 pt-0 sm:h-20 bg-indigo-50 sm:mt-8 sticky top-0 ">
+      <div className="flex justify-center items-center w-screen h-28 pt-0 sm:h-20 bg-indigo-50 sm:mt-8 sticky top-0 z-30">
         <SearchBtn />
         <Link to="/" onClick={() => goHomeAndReset()} aria-label="메인화면으로 이동">
           <img className="hidden sm:inline-block h-20" src={myWeddingLogo} alt="로고이미지" />
