@@ -17,6 +17,7 @@ function SearchBtn() {
       <button
         type="button"
         id="searchBtn"
+        aria-label="검색창 활성화 버튼"
         className={`sm:hidden flex shrink-0 justify-center items-center w-12 h-12 rounded-full bg-white ml-2 mr-4 sm:hover:bg-gray-200 ${isActive && "border-2 border-solid border-indigo-300"}`}
         onClick={() => handleClick()}
       >

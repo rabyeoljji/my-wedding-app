@@ -24,10 +24,10 @@ function Nav() {
     <>
       <div className="flex justify-center items-center w-screen h-28 pt-0 sm:h-20 bg-indigo-50 sm:mt-8 sticky top-0 ">
         <SearchBtn />
-        <Link to="/" onClick={() => goHomeAndReset()}>
+        <Link to="/" onClick={() => goHomeAndReset()} aria-label="메인화면으로 이동">
           <img className="hidden sm:inline-block h-20" src={myWeddingLogo} alt="로고이미지" />
         </Link>
-        <Link to="/" onClick={() => goHomeAndReset()}>
+        <Link to="/" onClick={() => goHomeAndReset()} aria-label="메인화면으로 이동">
           <img className="sm:hidden h-20" src={myWeddingLogoMobile} alt="로고이미지" />
         </Link>
         <Search isMobile={false} />
