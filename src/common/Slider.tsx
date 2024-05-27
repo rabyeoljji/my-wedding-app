@@ -4,7 +4,6 @@ import photographyImg from "../assets/image/wedding_photo.jpg";
 import flowerImg from "../assets/image/wedding_flower.jpg";
 import foodImg from "../assets/image/wedding_food.jpg";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 interface SliderItemType {
   readonly category: string;
