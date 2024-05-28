@@ -76,9 +76,15 @@ const Review = ({ type }: { type: "editor" | "view" }): JSX.Element => {
   const handleImageFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     if (files) {
-      const uploadImageFile = files[0];
-      const imageUrl = window.URL.createObjectURL(uploadImageFile);
-      setImageUrl(() => imageUrl);
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        setImageUrl(() => String(fileReader.result));
+      };
+      fileReader.readAsDataURL(files[0]);
+
+      // const uploadImageFile = files[0];
+      // const imageUrl = window.URL.createObjectURL(uploadImageFile);
+      // setImageUrl(() => imageUrl);
     }
   };
 
