@@ -32,7 +32,7 @@ const Slider = (): JSX.Element => {
       img: foodImg,
     },
   ];
-  const [carouselState, setCarouselState] = useState({ current: 0, next: 1 });
+  const [carouselState, setCarouselState] = useState({ prev: items.length - 1, current: 0, next: 1 });
 
   useEffect(() => {
     setTimeout(handleState, 3500);
@@ -40,11 +40,13 @@ const Slider = (): JSX.Element => {
 
   const handleState = () => {
     if (carouselState.current === items.length - 1) {
-      setCarouselState(() => ({ current: 0, next: 1 }));
+      setCarouselState((state) => ({ prev: state.prev + 1, current: 0, next: 1 }));
     } else if (carouselState.next === items.length - 1) {
-      setCarouselState((state) => ({ current: state.current + 1, next: 0 }));
+      setCarouselState((state) => ({ prev: state.prev + 1, current: state.current + 1, next: 0 }));
+    } else if (carouselState.prev === items.length - 1) {
+      setCarouselState((state) => ({ prev: 0, current: state.current + 1, next: state.next + 1 }));
     } else {
-      setCarouselState(({ current, next }) => ({ current: current + 1, next: next + 1 }));
+      setCarouselState(({ prev, current, next }) => ({ prev: prev + 1, current: current + 1, next: next + 1 }));
     }
   };
 
@@ -56,7 +58,7 @@ const Slider = (): JSX.Element => {
           src={item.img}
           alt={item.category}
           id={`carouselItem-${index}`}
-          className={`carouselItem lg:w-60 lg:h-[45rem] absolute top-0 left-0 transition-all duration-300 ${index === carouselState.current && "active z-20"} ${index === carouselState.next && "next translate-x-60"} ${index === carouselState.current - 1 && "z-10"}`}
+          className={`carouselItem lg:w-60 lg:h-[45rem] absolute top-0 left-0 transition-all duration-500 ${index === carouselState.current && "z-20 active"} ${index === carouselState.next && "z-10 translate-x-60 next"} ${index === carouselState.prev && "z-10 -translate-x-60 prev"}`}
         />
       ))}
     </div>
