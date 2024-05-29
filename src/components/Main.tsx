@@ -4,8 +4,6 @@ import CategoryBar from "../components/CategoryBar";
 import Pagination from "./Pagination";
 
 const Main = (): JSX.Element => {
-  // // page를 새로고침 시에도 유지하려면 category, filter상태, pageGroup, currentPage상태가 세션 스토리지에 저장되어야함
-
   return (
     <div className="w-4/5 flex flex-col items-center">
       <div className="w-full h-auto flex justify-center sm:justify-between items-start pt-12 sm:pt-20 pb-12">
