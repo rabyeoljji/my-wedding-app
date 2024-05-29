@@ -2,12 +2,13 @@ import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { isActiveSearchBarAtom } from "../../store/search";
 import { filterAtom } from "../../store/filter";
 import { MutableRefObject, useEffect, useRef, useState } from "react";
-import { currentPageAtom } from "../../store/page";
+import { currentPageAtom, pageGroupAtom } from "../../store/page";
 
 const BudgetFilter = (): JSX.Element => {
   const isActiveSearchBar = useAtomValue(isActiveSearchBarAtom);
-  const [filterState, setFilterState] = useAtom(filterAtom);
+  const setPageGroup = useSetAtom(pageGroupAtom);
   const setCurrentPage = useSetAtom(currentPageAtom);
+  const [filterState, setFilterState] = useAtom(filterAtom);
   const [minCostInput, setMinCostInput] = useState(String(filterState.budget[0] ?? ""));
   const [maxCostInput, setMaxCostInput] = useState(String(filterState.budget[1] ?? ""));
 
@@ -42,9 +43,11 @@ const BudgetFilter = (): JSX.Element => {
 
     if (target.classList.contains("minCost")) {
       setMinCostInput(() => target.value);
+      setPageGroup(() => 1);
       setCurrentPage(() => 1);
     } else if (target.classList.contains("maxCost")) {
       setMaxCostInput(() => target.value);
+      setPageGroup(() => 1);
       setCurrentPage(() => 1);
     }
   };
@@ -52,6 +55,7 @@ const BudgetFilter = (): JSX.Element => {
   const resetBudgetFilter = () => {
     setMinCostInput(() => "");
     setMaxCostInput(() => "");
+    setPageGroup(() => 1);
     setCurrentPage(() => 1);
   };
 

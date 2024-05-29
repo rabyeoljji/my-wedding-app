@@ -2,10 +2,11 @@ import { useAtom, useSetAtom } from "jotai";
 import { categories, categoryType } from "../@types/Filter";
 import { categoryAtom } from "../store/category";
 import { useEffect } from "react";
-import { currentPageAtom } from "../store/page";
+import { currentPageAtom, pageGroupAtom } from "../store/page";
 
 const CategoryBar = (): JSX.Element => {
   const [categoryState, setCategoryState] = useAtom(categoryAtom);
+  const setPageGroup = useSetAtom(pageGroupAtom);
   const setCurrentPage = useSetAtom(currentPageAtom);
 
   useEffect(() => {}, [categoryState]);
@@ -13,7 +14,8 @@ const CategoryBar = (): JSX.Element => {
   const addActive = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const eventTarget = e.target as HTMLButtonElement;
     setCategoryState(() => eventTarget.id as categoryType);
-    setCurrentPage(1);
+    setPageGroup(() => 1);
+    setCurrentPage(() => 1);
   };
 
   return (

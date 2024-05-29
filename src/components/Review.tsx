@@ -81,10 +81,6 @@ const Review = ({ type }: { type: "editor" | "view" }): JSX.Element => {
         setImageUrl(() => String(fileReader.result));
       };
       fileReader.readAsDataURL(files[0]);
-
-      // const uploadImageFile = files[0];
-      // const imageUrl = window.URL.createObjectURL(uploadImageFile);
-      // setImageUrl(() => imageUrl);
     }
   };
 

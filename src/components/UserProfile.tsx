@@ -7,13 +7,14 @@ import { useEffect } from "react";
 import { categoryAtom, initialCategory } from "../store/category";
 import { categoryType } from "../@types/Filter";
 import Pagination from "./Pagination";
-import { currentPageAtom } from "../store/page";
+import { currentPageAtom, pageGroupAtom } from "../store/page";
 import { filterAtom, initialFilter } from "../store/filter";
 
 const UserProfile = (): JSX.Element => {
   const { category } = useParams();
   const userInfo = useAtomValue(userAtom);
   const setCategory = useSetAtom(categoryAtom);
+  const setPageGroup = useSetAtom(pageGroupAtom);
   const setCurrentPage = useSetAtom(currentPageAtom);
   const setFilterState = useSetAtom(filterAtom);
 
@@ -23,6 +24,7 @@ const UserProfile = (): JSX.Element => {
     } else {
       setCategory(() => initialCategory);
     }
+    setPageGroup(() => 1);
     setCurrentPage(() => 1);
     setFilterState(() => initialFilter);
   }, [, category]);

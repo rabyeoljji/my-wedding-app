@@ -3,12 +3,13 @@ import { filterAtom } from "../../store/filter";
 import { isActiveSearchBarAtom } from "../../store/search";
 import { useEffect, useState } from "react";
 import { geoMap } from "../../store/geoMap";
-import { currentPageAtom } from "../../store/page";
+import { currentPageAtom, pageGroupAtom } from "../../store/page";
 
 const GeoFilter = (): JSX.Element => {
   const isActiveSearchBar = useAtomValue(isActiveSearchBarAtom);
-  const [filterState, setFilterState] = useAtom(filterAtom);
+  const setPageGroup = useSetAtom(pageGroupAtom);
   const setCurrentPage = useSetAtom(currentPageAtom);
+  const [filterState, setFilterState] = useAtom(filterAtom);
   const [isOpen, setIsOpen] = useState(false);
   const [dropDownCategory, setDropDownCategory] = useState("");
 
@@ -45,6 +46,7 @@ const GeoFilter = (): JSX.Element => {
         ...filterState,
         geo: [target.innerText, "전체"],
       }));
+      setPageGroup(() => 1);
       setCurrentPage(() => 1);
       setIsOpen(() => false);
     } else if (dropDownCategory === "county") {
@@ -52,6 +54,7 @@ const GeoFilter = (): JSX.Element => {
         ...filterState,
         geo: [filterState.geo[0], target.innerText],
       }));
+      setPageGroup(() => 1);
       setCurrentPage(() => 1);
       setIsOpen(() => false);
     }

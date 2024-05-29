@@ -1,19 +1,21 @@
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { renderReviewListAtom, reviewListAtom } from "../store/review";
 import Rating from "../common/Rating";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { currentPageAtom } from "../store/page";
+import { currentPageAtom, pageGroupAtom } from "../store/page";
 import { ReviewListPropsType } from "../@types/Review";
 
 const ReviewList = ({ type, list, businessItemId }: ReviewListPropsType) => {
   // type === business ? list === businessReviewList : list === userReviewList
   const reviewList = useAtomValue(reviewListAtom); // 전체 리뷰리스트
+  const setPageGroup = useSetAtom(pageGroupAtom);
   const [renderReviewList, setRenderReviewList] = useAtom(renderReviewListAtom);
   const [currentPage, setCurrentPage] = useAtom(currentPageAtom);
   const [renderDataIndex, setRenderDataIndex] = useState([0, 4]);
 
   useEffect(() => {
+    setPageGroup(() => 1);
     setCurrentPage(() => 1);
   }, []);
 

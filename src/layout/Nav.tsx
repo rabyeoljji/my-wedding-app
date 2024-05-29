@@ -6,16 +6,18 @@ import SearchBtn from "./navItems/SearchBtn";
 import User from "./navItems/User";
 import { useSetAtom } from "jotai";
 import { categoryAtom, initialCategory } from "../store/category";
-import { currentPageAtom } from "../store/page";
+import { currentPageAtom, pageGroupAtom } from "../store/page";
 import { filterAtom, initialFilter } from "../store/filter";
 
 function Nav() {
   const setCategoryState = useSetAtom(categoryAtom);
+  const setPageGroup = useSetAtom(pageGroupAtom);
   const setCurrentPage = useSetAtom(currentPageAtom);
   const setFilterState = useSetAtom(filterAtom);
 
   const goHomeAndReset = () => {
     setCategoryState(() => initialCategory);
+    setPageGroup(() => 1);
     setCurrentPage(() => 1);
     setFilterState(() => initialFilter);
   };
