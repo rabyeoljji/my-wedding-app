@@ -3,32 +3,40 @@ import { BusinessPropsType } from "../@types/Business";
 import HeartIcon from "./icons/HeartIcon";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { businessAtom, filteredListAtom, renderingListAtom } from "../store/company";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { activeBudgetFilter, activeGeoFilter, filterAtom } from "../store/filter";
 import { filterCategory } from "../store/category";
 import { categoryAtom } from "../store/category";
-import { currentPageAtom } from "../store/page";
+import { currentPageAtom, pageGroupAtom } from "../store/page";
 import { userAtom } from "../store/userInfo";
 import { RenderIcon } from "./icons/RenderIcon";
 import BusinessListSkeleton from "../skeleton/BusinessListSkeleton";
-import { isActiveSearchBarAtom } from "../store/search";
+import { isActiveSearchBarAtom, searchKeywordAtom } from "../store/search";
+import { MAIN_PAGE, PREV_PAGE, SESSION_LOCATION } from "../constants/sessionStorage";
 
 const BusinessList = ({ type }: BusinessPropsType): JSX.Element => {
   // businessList 상태에 데이터 배열 저장되어있음
   // type이 main이면 filtered리스트를, wishList이면 user의 wish_list에 있는 id해당 리스트를 렌더링
+  const { geo, budget, keyword } = useParams();
+  const navigate = useNavigate();
+  const currentLocation = useLocation().pathname;
 
-  // 전체 데이터 불러와서 메모
+  const [filteredList, setFilteredList] = useAtom(filteredListAtom);
+  const [renderingList, setRenderingList] = useAtom(renderingListAtom);
   const filterState = useAtomValue(filterAtom);
   const categoryState = useAtomValue(categoryAtom);
   const businessList = useAtomValue(businessAtom);
-  const [filteredList, setFilteredList] = useAtom(filteredListAtom);
-  const [renderingList, setRenderingList] = useAtom(renderingListAtom);
+  const pageGroupState = useAtomValue(pageGroupAtom);
   const currentPage = useAtomValue(currentPageAtom);
+  const searchKeyword = useAtomValue(searchKeywordAtom);
   const userInfo = useAtomValue(userAtom);
+  const setFilterState = useSetAtom(filterAtom);
+  const setSearchKeyword = useSetAtom(searchKeywordAtom);
   const setSearchBtnActive = useSetAtom(isActiveSearchBarAtom);
 
   const [renderDataIndex, setRenderDataIndex] = useState([0, 4]);
 
+  // 메모
   const filteredCategoryList = useMemo(
     () => filterCategory(businessList, categoryState),
     [businessList, categoryState],
@@ -40,8 +48,43 @@ const BusinessList = ({ type }: BusinessPropsType): JSX.Element => {
   const filteredGeoList = useMemo(() => activeGeoFilter(businessList, filterState), [businessList, filterState.geo]);
 
   useEffect(() => {
-    return setSearchBtnActive(() => false);
+    return setSearchBtnActive(() => false), sessionStorage.setItem(PREV_PAGE, currentLocation);
   }, []);
+
+  useEffect(() => {
+    const sessionLocation = sessionStorage.getItem(SESSION_LOCATION);
+    const prevPage = sessionStorage.getItem(PREV_PAGE);
+    if (type === "main") {
+      if (sessionLocation) navigate(`${sessionLocation}`);
+    } else navigate(`${prevPage}`);
+  }, [type, navigate]);
+
+  useEffect(() => {
+    const prevPage = sessionStorage.getItem(PREV_PAGE);
+
+    if (type === "main") {
+      const newLocation = `/${pageGroupState}/${currentPage}/${categoryState}/${filterState.geo.join("+")}/${filterState.budget.join("~")}/${searchKeyword}`;
+      if (currentLocation !== newLocation && prevPage !== newLocation && MAIN_PAGE !== newLocation) {
+        navigate(newLocation);
+        sessionStorage.setItem(SESSION_LOCATION, newLocation);
+      } else navigate("/");
+    }
+  }, [pageGroupState, currentPage, categoryState, filterState, searchKeyword, currentLocation]);
+
+  useEffect(() => {
+    if (geo && budget) {
+      const geoParams = decodeURIComponent(geo).split("+");
+      const budgetParams = budget.split("~").map(Number);
+      setFilterState((prev) => ({
+        ...prev,
+        geo: [...geoParams],
+        budget: [...budgetParams],
+      }));
+    }
+    if (keyword) {
+      setSearchKeyword(() => decodeURIComponent(keyword));
+    }
+  }, [geo, budget, keyword, setFilterState, setSearchKeyword]);
 
   useEffect(() => {
     let newList = businessList;

@@ -3,11 +3,19 @@ import { categories, categoryType } from "../@types/Filter";
 import { categoryAtom } from "../store/category";
 import { useEffect } from "react";
 import { currentPageAtom, pageGroupAtom } from "../store/page";
+import { useParams } from "react-router";
 
 const CategoryBar = (): JSX.Element => {
+  const { category } = useParams();
   const [categoryState, setCategoryState] = useAtom(categoryAtom);
   const setPageGroup = useSetAtom(pageGroupAtom);
   const setCurrentPage = useSetAtom(currentPageAtom);
+
+  useEffect(() => {
+    if (category) {
+      setCategoryState(() => category as categoryType);
+    }
+  }, [category]);
 
   useEffect(() => {}, [categoryState]);
 

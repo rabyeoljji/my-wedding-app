@@ -21,12 +21,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    allBusinessListPromise.then((dataList) => {
-      setBusinessList(dataList);
-    });
-    allReviewListPromise.then((dataList) => {
-      setReviewList(dataList);
-    });
+    allBusinessListPromise.then((dataList) => setBusinessList(dataList));
+    allReviewListPromise.then((dataList) => setReviewList(dataList));
   }, [allBusinessListPromise, allReviewListPromise]);
 
   return (

@@ -1,7 +1,7 @@
 import { useLocation, useNavigate, useParams } from "react-router";
 import Pagination from "./Pagination";
 import { useAtom, useAtomValue } from "jotai";
-import { businessAtom, renderingListAtom } from "../store/company";
+import { businessAtom } from "../store/company";
 import { RenderIcon } from "./icons/RenderIcon";
 import { categories } from "../@types/Filter";
 import HeartIcon from "./icons/HeartIcon";
@@ -14,6 +14,7 @@ import { fetchAllBusiness } from "../store/fetchData";
 import { drawerAtom } from "../store/drawer";
 import { reviewListAtom } from "../store/review";
 import Rating from "../common/Rating";
+import { SESSION_LOCATION } from "../constants/sessionStorage";
 
 const BusinessItem = (): JSX.Element => {
   const { id } = useParams();
@@ -25,15 +26,16 @@ const BusinessItem = (): JSX.Element => {
     return businessList.find((item) => item.id === id)?.reviews;
   }, [businessList, id]);
 
-  const renderingList = useAtomValue(renderingListAtom);
   const userInfo = useAtomValue(userAtom);
   const drawerState = useAtomValue(drawerAtom);
   const reviewList = useAtomValue(reviewListAtom);
   const [renderReviews, setRenderReviews] = useState<string[]>([]);
 
-  const item = renderingList.find((item) => item.id === id);
+  const item = businessList.find((item) => item.id === id);
 
   useEffect(() => {
+    sessionStorage.removeItem(SESSION_LOCATION);
+
     if (location.state === "reviewEdit") {
       fetchAllBusiness().then((list) => {
         setBusinessList(() => list);

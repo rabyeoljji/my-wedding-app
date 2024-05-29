@@ -1,5 +1,5 @@
 interface filterStateType {
-  budget: number[] | null[];
+  budget: number[];
   geo: string[];
 }
 

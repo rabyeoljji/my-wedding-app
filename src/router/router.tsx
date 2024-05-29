@@ -17,6 +17,7 @@ const Router = (): JSX.Element => {
     <Routes>
       <Route path="*" element={<Error />} />
       <Route path="/" element={<Index />} />
+      <Route path="/:pageGroup/:page/:category/:geo/:budget/:keyword?" element={<Index />} />
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
       <Route path="/password-reset" element={<PasswordResetView />} />
@@ -24,6 +25,7 @@ const Router = (): JSX.Element => {
       <Route path="/profile/:category" element={<UserProfileView />} />
       <Route path="/my-reviews" element={<MyReviewsView />} />
       <Route path="/business/:id" element={<BusinessItemView />} />
+      <Route path="/business/:id/:page" element={<BusinessItemView />} />
       <Route path="/review-edit-page/:id" element={<ReviewEditorView />} />
       <Route path="/review-page/:id" element={<ReviewContentView />} />
     </Routes>

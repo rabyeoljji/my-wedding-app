@@ -1,16 +1,17 @@
-import { useAtomValue, useSetAtom } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
 import { businessAtom, filteredListAtom } from "../../store/company";
 import BudgetFilter from "./BudgetFilter";
 import GeoFilter from "./GeoFilter";
 import { filterAtom } from "../../store/filter";
 import { filterStateType } from "../../@types/Filter";
+import { searchKeywordAtom } from "../../store/search";
 
 function Search({ isMobile }: { isMobile: boolean }) {
   const businessList = useAtomValue(businessAtom);
   const setFilteredList = useSetAtom(filteredListAtom);
   const filterState = useAtomValue(filterAtom);
-  const [searchKeyword, setSearchKeyword] = useState("");
+  const [searchKeyword, setSearchKeyword] = useAtom(searchKeywordAtom);
   const [openBudget, setOpenBudget] = useState(false);
   const [openGeo, setOpenGeo] = useState(false);
 

@@ -4,7 +4,7 @@ import { DocumentData } from "firebase/firestore";
 
 // 검색 필터
 export const initialFilter = {
-  budget: [null, null],
+  budget: [0, 0],
   geo: ["전체", "전체"],
 };
 export const filterAtom = atom<filterStateType>(initialFilter);
