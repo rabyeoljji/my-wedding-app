@@ -24,6 +24,7 @@ const Router = (): JSX.Element => {
       <Route path="/kakaoAuth" element={<ProcessKakaoToken />} />
       <Route path="/profile/:category" element={<UserProfileView />} />
       <Route path="/my-reviews" element={<MyReviewsView />} />
+      <Route path="/my-reviews/:page" element={<MyReviewsView />} />
       <Route path="/business/:id" element={<BusinessItemView />} />
       <Route path="/business/:id/:page" element={<BusinessItemView />} />
       <Route path="/review-edit-page/:id" element={<ReviewEditorView />} />

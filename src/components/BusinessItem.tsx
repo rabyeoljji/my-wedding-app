@@ -149,7 +149,7 @@ const BusinessItem = (): JSX.Element => {
             <ReviewList type="business" list={renderReviews} businessItemId={id ?? ""} />
             <div className="w-full h-10"></div>
           </div>
-          {renderReviews.length > 5 && <Pagination type="review" list={item.reviews} />}
+          {renderReviews.length > 5 && <Pagination type="review-business" list={item.reviews} />}
         </div>
       ) : (
         <div>해당 사업자를 찾을 수 없습니다.</div>

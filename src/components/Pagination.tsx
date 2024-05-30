@@ -4,7 +4,13 @@ import { useEffect } from "react";
 import { filteredListAtom } from "../store/company";
 import { useNavigate, useParams } from "react-router";
 
-const Pagination = ({ type, list }: { type: "main" | "review"; list?: string[] }): JSX.Element => {
+const Pagination = ({
+  type,
+  list,
+}: {
+  type: "main" | "review-business" | "review-user";
+  list?: string[];
+}): JSX.Element => {
   const navigate = useNavigate();
   const { pageGroup, page } = useParams();
   const { id } = useParams();
@@ -38,7 +44,8 @@ const Pagination = ({ type, list }: { type: "main" | "review"; list?: string[] }
   }, [pageGroupState, totalPage, setPageList]);
 
   useEffect(() => {
-    if (type === "review") navigate(`/business/${id}/${currentPage}`);
+    if (type === "review-business") navigate(`/business/${id}/${currentPage}`);
+    else if (type === "review-user") navigate(`/my-reviews/${currentPage}`);
   }, [currentPage]);
 
   // 페이지 클릭 시 동작
@@ -64,7 +71,7 @@ const Pagination = ({ type, list }: { type: "main" | "review"; list?: string[] }
   };
 
   return (
-    <div className={`pagination mb-16 ${type === "review" && "mt-8"}`}>
+    <div className={`pagination mb-16 ${type.includes("review") && "mt-8"}`}>
       <div className="join">
         <button
           className="join-item btn btn-sm bg-indigo-200 prev"
