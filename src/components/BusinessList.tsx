@@ -33,8 +33,11 @@ const BusinessList = ({ type }: BusinessPropsType): JSX.Element => {
   const setFilterState = useSetAtom(filterAtom);
   const setSearchKeyword = useSetAtom(searchKeywordAtom);
   const setSearchBtnActive = useSetAtom(isActiveSearchBarAtom);
+  const setPageGroup = useSetAtom(pageGroupAtom);
+  const setCurrentPage = useSetAtom(currentPageAtom);
 
   const [renderDataIndex, setRenderDataIndex] = useState([0, 4]);
+  const [prevLocation, setPrevLocation] = useState("");
 
   // 메모
   const filteredCategoryList = useMemo(
@@ -48,8 +51,15 @@ const BusinessList = ({ type }: BusinessPropsType): JSX.Element => {
   const filteredGeoList = useMemo(() => activeGeoFilter(businessList, filterState), [businessList, filterState.geo]);
 
   useEffect(() => {
+    setPageGroup(() => 1);
+    setCurrentPage(() => 1);
     return setSearchBtnActive(() => false), sessionStorage.setItem(PREV_PAGE, currentLocation);
   }, []);
+
+  useEffect(() => {
+    setPrevLocation(() => currentLocation);
+    sessionStorage.setItem(SESSION_LOCATION, currentLocation);
+  }, [currentLocation]);
 
   useEffect(() => {
     const sessionLocation = sessionStorage.getItem(SESSION_LOCATION);
@@ -60,16 +70,16 @@ const BusinessList = ({ type }: BusinessPropsType): JSX.Element => {
   }, [type, navigate]);
 
   useEffect(() => {
-    const prevPage = sessionStorage.getItem(PREV_PAGE);
+    sessionStorage.setItem(PREV_PAGE, prevLocation);
 
     if (type === "main") {
+      const prevPage = sessionStorage.getItem(PREV_PAGE);
       const newLocation = `/${pageGroupState}/${currentPage}/${categoryState}/${filterState.geo.join("+")}/${filterState.budget.join("~")}/${searchKeyword}`;
       if (currentLocation !== newLocation && prevPage !== newLocation && MAIN_PAGE !== newLocation) {
         navigate(newLocation);
-        sessionStorage.setItem(SESSION_LOCATION, newLocation);
       } else navigate("/");
     }
-  }, [pageGroupState, currentPage, categoryState, filterState, searchKeyword, currentLocation]);
+  }, [pageGroupState, currentPage, categoryState, filterState, searchKeyword]);
 
   useEffect(() => {
     if (geo && budget) {

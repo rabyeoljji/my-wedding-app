@@ -27,8 +27,17 @@ const Pagination = ({
   // lastPageGroup = Math.ceil(totalPage / PAGE_COUNT)
 
   useEffect(() => {
+    if (type.includes("review")) {
+      setPageGroup(() => 1);
+      setCurrentPage(() => 1);
+    }
+  }, [type]);
+
+  useEffect(() => {
     if (pageGroup && page) {
       setPageGroup(() => Number(pageGroup));
+      setCurrentPage(() => Number(page));
+    } else if (page) {
       setCurrentPage(() => Number(page));
     }
   }, [pageGroup, page]);

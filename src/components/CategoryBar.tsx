@@ -17,13 +17,13 @@ const CategoryBar = (): JSX.Element => {
     }
   }, [category]);
 
-  useEffect(() => {}, [categoryState]);
-
   const addActive = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const eventTarget = e.target as HTMLButtonElement;
-    setCategoryState(() => eventTarget.id as categoryType);
-    setPageGroup(() => 1);
-    setCurrentPage(() => 1);
+    if (eventTarget.id !== categoryState) {
+      setCategoryState(() => eventTarget.id as categoryType);
+      setPageGroup(() => 1);
+      setCurrentPage(() => 1);
+    }
   };
 
   return (
