@@ -1,6 +1,5 @@
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
-import { businessAtom, filteredListAtom } from "../../store/company";
 import BudgetFilter from "./BudgetFilter";
 import GeoFilter from "./GeoFilter";
 import { filterAtom } from "../../store/filter";
@@ -8,10 +7,8 @@ import { filterStateType } from "../../@types/Filter";
 import { searchKeywordAtom } from "../../store/search";
 
 function Search({ isMobile }: { isMobile: boolean }) {
-  const businessList = useAtomValue(businessAtom);
-  const setFilteredList = useSetAtom(filteredListAtom);
   const filterState = useAtomValue(filterAtom);
-  const [searchKeyword, setSearchKeyword] = useAtom(searchKeywordAtom);
+  const setSearchKeyword = useSetAtom(searchKeywordAtom);
   const [openBudget, setOpenBudget] = useState(false);
   const [openGeo, setOpenGeo] = useState(false);
 
@@ -25,11 +22,6 @@ function Search({ isMobile }: { isMobile: boolean }) {
       }
     });
   }, []);
-
-  useEffect(() => {
-    const newFilteredList = businessList.filter((item) => item.name.toLowerCase().includes(searchKeyword));
-    setFilteredList(() => newFilteredList);
-  }, [searchKeyword, setFilteredList]);
 
   useEffect(() => {}, [openGeo, openBudget]);
 

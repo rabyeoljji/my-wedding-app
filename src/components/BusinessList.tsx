@@ -94,7 +94,8 @@ const BusinessList = ({ type }: BusinessPropsType): JSX.Element => {
         newList = filteredCategoryList;
       }
       const GeoBudgetList = filteredGeoList.filter((item) => filteredBudgetList.includes(item));
-      newList = newList.filter((item) => GeoBudgetList.includes(item));
+      const newFilteredList = GeoBudgetList.filter((item) => item.name.toLowerCase().includes(searchKeyword));
+      newList = newList.filter((item) => newFilteredList.includes(item));
     } else {
       if (categoryState !== "all") {
         newList = filteredCategoryList;
@@ -112,6 +113,7 @@ const BusinessList = ({ type }: BusinessPropsType): JSX.Element => {
     filteredCategoryList,
     setFilteredList,
     filterState,
+    searchKeyword,
   ]);
 
   useEffect(() => {
