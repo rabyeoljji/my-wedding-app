@@ -1,30 +1,23 @@
-# React + TypeScript + Vite
+# 🌼My Wedding
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+</br>
+</br>
 
-Currently, two official plugins are available:
+커스텀 웨딩을 기획하고 싶은 🤵예비 신랑 신부👰들을 위한 플랫폼입니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+공간 / 컨설팅 / 사진 / 꽃 / 음식 카테고리 별로 웨딩 서비스를 제공하는 사업자를 한 곳에서 비교해볼 수 있으며,
 
-## Expanding the ESLint configuration
+지역과 예산별로 필터링 해서 사업자를 검색해볼 수도 있습니다!
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+마음에 드는 사업자가 있다면 위시리스트에도 넣어보세요!
 
-- Configure the top-level `parserOptions` property like this:
+</br>
+</br>
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+[배포 사이트 URL](https://my-wedding-app.vercel.app/)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+</br>
+</br>
+
+프로젝트 진행 사항이 궁금하다면?
+- [NOTION 링크](https://na-s-note-page.notion.site/My-Wedding-3bb339b41a4a4091a3d9b93b2db394d5?pvs=4)
