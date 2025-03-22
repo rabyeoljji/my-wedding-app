@@ -2,7 +2,7 @@ import { useAtom, useAtomValue } from "jotai";
 import { PAGE_COUNT, currentPageAtom, pageGroupAtom, pageListAtom, pageListCalc } from "../store/page";
 import { useEffect } from "react";
 import { filteredListAtom } from "../store/company";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Pagination = ({
   type,

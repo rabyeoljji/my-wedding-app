@@ -1,6 +1,6 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const GoogleLoginBtn = (): JSX.Element => {
   const navigate = useNavigate()

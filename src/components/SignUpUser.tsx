@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, MutableRefObject, useRef, useState } from "react";
 import { setUser } from "../auth/SignUpAuth";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const SignUpUser = (): JSX.Element => {
   const [inputState, setInputState] = useState({

@@ -1,4 +1,3 @@
-import { useLocation, useNavigate, useParams } from "react-router";
 import Pagination from "./Pagination";
 import { useAtom, useAtomValue } from "jotai";
 import { businessAtom } from "../store/company";
@@ -6,7 +5,7 @@ import { RenderIcon } from "./icons/RenderIcon";
 import { categories } from "../@types/Filter";
 import HeartIcon from "./icons/HeartIcon";
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { userAtom } from "../store/userInfo";
 import { v4 as uuid4 } from "uuid";
 import ReviewList from "./ReviewList";
@@ -22,14 +21,18 @@ const BusinessItem = (): JSX.Element => {
   const navigate = useNavigate();
 
   const [businessList, setBusinessList] = useAtom(businessAtom);
-  const businessReviews = useMemo(() => {
-    return businessList.find((item) => item.id === id)?.reviews;
+  const businessReviews:string[] = useMemo(() => {
+    const item = businessList.find((item) => item.id === id) ?? null;
+    if (item) {
+      return item.reviews;
+    }
+    return ['']
   }, [businessList, id]);
 
   const userInfo = useAtomValue(userAtom);
   const drawerState = useAtomValue(drawerAtom);
   const reviewList = useAtomValue(reviewListAtom);
-  const [renderReviews, setRenderReviews] = useState<string[]>([]);
+  const [renderReviews, setRenderReviews] = useState<string[]>(['']);
 
   const item = businessList.find((item) => item.id === id);
 

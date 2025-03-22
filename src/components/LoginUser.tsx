@@ -1,10 +1,10 @@
-import { useNavigate } from "react-router";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useLogin } from "../auth/LoginOutAuth";
 import { useSetAtom } from "jotai";
 import { fetchUniqueUser, userAtom } from "../store/userInfo";
 import GoogleLoginBtn from "../auth/socialLogin/GoogleLoginBtn";
 import KakaoLoginBtn from "../auth/socialLogin/KakaoLoginBtn";
+import { useNavigate } from "react-router-dom";
 
 const LoginUser = (): JSX.Element => {
   const [inputState, setInputState] = useState({

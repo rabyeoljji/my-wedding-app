@@ -1,7 +1,7 @@
 import { FormEvent } from "react";
 import { sendEmail } from "../auth/PasswordResetAuth";
-import { useNavigate } from "react-router";
 import { checkEmail } from "../store/fetchData";
+import { useNavigate } from "react-router-dom";
 
 const PasswordReset = (): JSX.Element => {
   const navigate = useNavigate();

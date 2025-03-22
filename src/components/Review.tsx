@@ -1,6 +1,5 @@
 import { useAtom, useAtomValue } from "jotai";
 import { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router";
 import { userAtom } from "../store/userInfo";
 import {
   deleteBusinessReview,
@@ -14,7 +13,7 @@ import { ReviewType } from "../@types/Review";
 import { businessAtom } from "../store/company";
 import Rating from "../common/Rating";
 import { reviewListAtom } from "../store/review";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const Review = ({ type }: { type: "editor" | "view" }): JSX.Element => {
   const { id } = useParams();

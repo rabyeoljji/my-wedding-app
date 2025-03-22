@@ -1,7 +1,7 @@
 import { useAtom } from "jotai";
 import { deleteWishList, postWishList } from "../../store/fetchData";
 import { userAtom } from "../../store/userInfo";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const HeartIcon = ({ id, check }: { id: string; check?: boolean }): JSX.Element => {
   const navigate = useNavigate();

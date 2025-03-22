@@ -3,7 +3,7 @@ import { categories, categoryType } from "../@types/Filter";
 import { categoryAtom } from "../store/category";
 import { useEffect } from "react";
 import { currentPageAtom, pageGroupAtom } from "../store/page";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 
 const CategoryBar = (): JSX.Element => {
   const { category } = useParams();
