@@ -87,7 +87,7 @@ const BusinessItem = (): JSX.Element => {
                       {item.address.city} {item.address.county} {item.address.detail_address}
                     </p>
                   </div>
-                  {item.category === ("place" || "food") && <div>수용 가능 인원 : {item.possible_amount}명</div>}
+                  {item.category === ("place") || item.category === ("food") && <div>수용 가능 인원 : {item.possible_amount}명</div>}
                 </div>
               </div>
               <div className="border-2 border-solid border-gray-200 rounded-lg flex flex-col justify-center items-center w-full min-w-36 md:w-60 lg:w-80 h-40 md:h-40 mt-8 md:mt-0 ml-4">

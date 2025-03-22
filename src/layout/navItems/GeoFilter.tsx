@@ -17,7 +17,7 @@ const GeoFilter = (): JSX.Element => {
     window.addEventListener("click", (e: MouseEvent) => {
       e.stopPropagation();
       const target = e.target as HTMLElement;
-      if (target?.classList.contains("selectCity" || "selectCounty")) return;
+      if (target?.classList.contains("selectCity") || target?.classList.contains("selectCounty")) return;
       else {
         setIsOpen(() => false);
       }
